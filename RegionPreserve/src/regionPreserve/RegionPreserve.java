@@ -2,7 +2,6 @@ package regionPreserve;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -13,8 +12,6 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
@@ -33,6 +30,7 @@ public class RegionPreserve extends JavaPlugin implements Listener {
 	
 	public static List<ActiveRegion> regions = new ArrayList<ActiveRegion>();
 	public String oldVersion = "1.0.0";
+	Update Update;
 	
 	public void onEnable() {
 		getServer().getPluginManager().registerEvents(this, this);
@@ -41,10 +39,11 @@ public class RegionPreserve extends JavaPlugin implements Listener {
 		updateRegions();
 		BukkitTask task = new CheckEntities(this).runTaskTimer(this, 0, 100);
 		if(task == null){	} // just the keep Eclipse happy :)
+		this.Update = new Update(this);
 		System.out.print("[RegionPreserve] RegionPreserve enabled!");
 	}
 
-	public void loadConfiguration(){		
+	public void loadConfiguration(){		 
 		// copy default config is needed
 		File configFile = new File(this.getDataFolder(), "config.yml");     
 		if(!configFile.exists()){
@@ -55,61 +54,7 @@ public class RegionPreserve extends JavaPlugin implements Listener {
 		if(!regionFile.exists()){
 		    copy(this.getResource("regions.txt"), regionFile);
 		}
-		
-		// version stuff
-		if(getConfig().isSet("version"))
-		{
-			oldVersion = getConfig().getString("version");
-			if(oldVersion.equalsIgnoreCase("1.1.0"))
-			{
-				// update 1.1.0 to 1.3.0
-				FileConfiguration customConfig = YamlConfiguration.loadConfiguration(this.getResource("config.yml"));
-				customConfig.set("flags.mobdespawn", true);
-				customConfig.set("flags.pvp", false);
-				try {
-					customConfig.save(new File(this.getDataFolder(), "config.yml"));
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				this.reloadConfig();
-			}
-			if(oldVersion.equalsIgnoreCase("1.2.0"))
-			{
-				// update 1.2.0 to 1.3.0
-				FileConfiguration customConfig = YamlConfiguration.loadConfiguration(this.getResource("config.yml"));
-				customConfig.set("flags.pvp", false);
-				try {
-					customConfig.save(new File(this.getDataFolder(), "config.yml"));
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				this.reloadConfig();
-			}
-		}
-		if(!getConfig().isSet("version"))
-		{
-			// update 1.0.0 to 1.3.0
-			FileConfiguration customConfig = YamlConfiguration.loadConfiguration(this.getResource("config.yml"));
-			customConfig.set("flags.use", this.getConfig().getBoolean("flags.use"));
-			customConfig.set("flags.build", this.getConfig().getBoolean("flags.build"));
-			customConfig.set("flags.burn", this.getConfig().getBoolean("flags.burn"));
-			customConfig.set("flags.fade", this.getConfig().getBoolean("flags.fade"));
-			customConfig.set("flags.grow", this.getConfig().getBoolean("flags.grow"));
-			customConfig.set("flags.leafdecay", this.getConfig().getBoolean("flags.leaf-decay"));
-			customConfig.set("flags.explode", this.getConfig().getBoolean("flags.explode"));
-			customConfig.set("flags.bucket", this.getConfig().getBoolean("flags.bucket"));
-			customConfig.set("flags.monsterspawning", this.getConfig().getBoolean("flags.mobspawn"));
-			customConfig.set("flags.animalspawning", this.getConfig().getBoolean("flags.mobspawn"));
-			customConfig.set("flags.commands", true);
-			customConfig.set("flags.mobdespawn", true);
-			customConfig.set("flags.pvp", false);
-			try {
-				customConfig.save(new File(this.getDataFolder(), "config.yml"));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			this.reloadConfig();
-		}
+		this.Update.UpdateConfigFile();
 	}
 	
 	public void updateRegions()
