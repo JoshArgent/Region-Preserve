@@ -34,12 +34,12 @@ public class RegionPreserve extends JavaPlugin implements Listener {
 	
 	public void onEnable() {
 		getServer().getPluginManager().registerEvents(this, this);
+		this.Update = new Update(this);
 		loadConfiguration();
 		regions = RegionLoading.LoadRegions();
 		updateRegions();
 		BukkitTask task = new CheckEntities(this).runTaskTimer(this, 0, 100);
 		if(task == null){	} // just the keep Eclipse happy :)
-		this.Update = new Update(this);
 		System.out.print("[RegionPreserve] RegionPreserve enabled!");
 	}
 
