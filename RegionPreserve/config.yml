@@ -1,0 +1,49 @@
+## RegionPreserve Config File
+## Version 1.3.0
+## Do not remove/add any thing! Just edit the values
+##
+## message - The message displayed when someone tries to build in a protected region
+message: 'You do not have permission to do that here!'
+##
+## The default flag values are that every new region by default.
+flags:
+  ##
+  ## use - The ability to open chests, doors, buttons ect.
+  use: true
+  ##
+  ## build - The ability to break or place blocks
+  build: false
+  ##
+  ## burn - When set to true blocks will burn and disappear when set alight.
+  burn: false
+  ##
+  ## fade - Ice and snow are example of blocks that fade. (When next to a light source)
+  fade: false
+  ##
+  ## grow - When set to true saplings and seeds grow into plants and grass spreads.
+  grow: false
+  ##
+  ## leafdecay - Stops leaves from disappearing if they're not near to a log
+  leafdecay: false
+  ##
+  ## explode - Stops explosions from creepers, tnt and ghasts
+  explode: false
+  ##
+  ## bucket - Stops players from placing water/lava or collecting water/lava with a bucket
+  bucket: false
+  ##
+  ## monsterspawning - Stops hostile mobs from spawning
+  monsterspawning: false
+  ##
+  ## animalspawning - Stops animals and non-hostile mobs from spawning
+  animalspawning: true
+  ##
+  ## commands - Allow commands to be entered in this region
+  commands: true
+  ##
+  ## pvp - Allow pvp in a protected region
+  pvp: false
+##
+## DO NOT EDIT BELOW HERE
+##
+version: 1.3.0

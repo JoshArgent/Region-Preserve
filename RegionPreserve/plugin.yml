@@ -1,0 +1,19 @@
+name: RegionPreserve
+main: regionPreserve.RegionPreserve
+version: 1.3.0
+commands:
+  rp:
+    description: Region Protection main command
+    usage: /<command>
+permissions:
+    rp.*:
+        description: Gives access to all RegionPreserve commands and functions
+        children:
+            rp.build: true
+            rp.edit: true
+    rp.edit:
+        description: Allows you to create or delete RegionPreserve regions
+        default: op
+    rp.build:
+        description: Allows you to build in RegionPreserve regions
+        default: op
