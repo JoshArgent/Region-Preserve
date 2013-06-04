@@ -1,6 +1,7 @@
 package regionPreserve;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -52,6 +53,12 @@ public class RegionLoading {
 			regionsData.set(r.name + ".pos2", r.pointTwo.toVector());
 			regionsData.set(r.name + ".world", r.pointOne.getWorld().getName());
 			regionsData.set(r.name + ".flags", Flags.flagsListToStringList(r.flags));
+		}
+		try {
+			regionsData.save(regionsFile);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		System.out.print("[RegionPreserve] Saved regions!");
 	}
