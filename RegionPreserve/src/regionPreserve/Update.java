@@ -64,7 +64,7 @@ public class Update {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			
+			configFile.delete();
 		}
 	}
 	
