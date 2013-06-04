@@ -22,14 +22,13 @@ public class RegionLoading {
 		Set<String> keys = regionsData.getKeys(false);
 		for (String key : keys)
 		{
-			System.out.print(key); //DEBUG
 			if(Bukkit.getWorld(regionsData.getString(key + ".world")) != null)
 			{
 				Location pos1 = regionsData.getVector(key + ".pos1").toLocation(Bukkit.getWorld(regionsData.getString(key + ".world")));
 				Location pos2 = regionsData.getVector(key + ".pos2").toLocation(Bukkit.getWorld(regionsData.getString(key + ".world")));
 				String name = key;
 				ActiveRegion ar = new ActiveRegion(name, pos1, pos2);
-				List<Flags.Flag> flags = Flags.stringListToFlagList(regionsData.getStringList(key + ".world"));
+				List<Flags.Flag> flags = Flags.stringListToFlagList(regionsData.getStringList(key + ".flags"));
 				ar.flags = flags;
 				regions.add(ar);
 			}
