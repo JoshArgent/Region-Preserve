@@ -1,46 +1,46 @@
 package regionPreserve;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 
 import regionPreserve.Flags.Flag;
 
 public class RegionLoading {
-	
+		
 	public static List<ActiveRegion> LoadRegions()
 	{
 		List<ActiveRegion> regions = new ArrayList<ActiveRegion>();
-		List<String> regionsText = ReadFile("plugins/RegionPreserve/regions.txt");
-		if(regionsText.size() > 0)
+		FileConfiguration regionsData = null;
+		File regionsFile = new File("plugins/RegionPreserve", "regions.yml");
+		regionsData = YamlConfiguration.loadConfiguration(regionsFile);
+		Set<String> keys = regionsData.getKeys(false);
+		for (String key : keys)
 		{
-			for (String rt : regionsText)
+			if(Bukkit.getWorld(regionsData.getString(key + ".world")) != null)
 			{
-				Location p1 = new Location(Bukkit.getWorld(rt.split("\\|")[1]), Double.parseDouble(rt.split("\\|")[2]), Double.parseDouble(rt.split("\\|")[3]), Double.parseDouble(rt.split("\\|")[4]));
-				Location p2 = new Location(Bukkit.getWorld(rt.split("\\|")[1]), Double.parseDouble(rt.split("\\|")[5]), Double.parseDouble(rt.split("\\|")[6]), Double.parseDouble(rt.split("\\|")[7]));
-				String name = rt.split("\\|")[0];
-				int num = 0;
-				List<Flags.Flag> flags = new ArrayList<Flags.Flag>();
-				for (String part : rt.split("\\|"))
-				{
-					if(num > 7)
-					{
-						flags.add(Flags.flagFromString(part));
-					}
-					num += 1;
-				}
-				ActiveRegion r = new ActiveRegion(name, p1, p2);
-				r.flags = flags;
-				regions.add(r);
+				Location pos1 = regionsData.getVector(key + ".pos1").toLocation(Bukkit.getWorld(regionsData.getString(key + ".world")));
+				Location pos2 = regionsData.getVector(key + ".pos2").toLocation(Bukkit.getWorld(regionsData.getString(key + ".world")));
+				String name = key;
+				ActiveRegion ar = new ActiveRegion(name, pos1, pos2);
+				List<Flags.Flag> flags = Flags.stringListToFlagList(regionsData.getStringList(key + ".world"));
+				ar.flags = flags;
+				regions.add(ar);
+			}
+			else
+			{
+				System.out.print("[RegionPreserve] The world '" + regionsData.getString(key + ".world") + "' does not exist!");
 			}
 		}
+		
 		System.out.print("[RegionPreserve] Loaded regions!");
 		return regions;
 	}
@@ -60,33 +60,6 @@ public class RegionLoading {
 		}
 		WriteFile("plugins/RegionPreserve/regions.txt", TextRegions);
 		System.out.print("[RegionPreserve] Saved regions!");
-	}
-	
-	private static List<String> ReadFile(String path)
-	{
-		BufferedReader in = null;
-		List<String> myList = new ArrayList<String>();
-		try {   
-		    in = new BufferedReader(new FileReader(path));
-		    String str;
-		    while ((str = in.readLine()) != null) {
-		        myList.add(str);
-		    }
-		} catch (FileNotFoundException e) {
-		    e.printStackTrace();
-		} catch (IOException e) {
-		    e.printStackTrace();
-		} finally {
-		    if (in != null) {
-		        try {
-					in.close();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-		    }
-		}
-		return myList;
 	}
 	
 	private static void WriteFile(String path, List<String> text)
