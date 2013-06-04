@@ -22,6 +22,7 @@ public class RegionLoading {
 		Set<String> keys = regionsData.getKeys(false);
 		for (String key : keys)
 		{
+			System.out.print(key); //DEBUG
 			if(Bukkit.getWorld(regionsData.getString(key + ".world")) != null)
 			{
 				Location pos1 = regionsData.getVector(key + ".pos1").toLocation(Bukkit.getWorld(regionsData.getString(key + ".world")));

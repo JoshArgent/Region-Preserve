@@ -93,8 +93,15 @@ public class RegionPreserveCommand {
 										regions.add(r);
 									}
 								}
+								try
+								{
 								RegionLoading.SaveRegions(regions);
 								RegionLoading.LoadRegions();
+								}
+								catch(Exception ex) // DEBUG
+								{
+									System.out.print(ex.getMessage());
+								}
 								sender.sendMessage(ChatColor.GREEN + "Region flags updated!");
 							}
 							catch(Exception ex)
