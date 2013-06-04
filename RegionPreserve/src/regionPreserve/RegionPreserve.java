@@ -217,6 +217,13 @@ public class RegionPreserve extends JavaPlugin implements Listener {
 	@EventHandler
 	public void BlockIgnite(org.bukkit.event.block.BlockIgniteEvent event)
 	{
+		if(event.getPlayer() != null)
+		{
+			if((event.getPlayer().hasPermission("rp.build") || event.getPlayer().isOp()))  
+			{
+				return;
+			}
+		}
 		for (ActiveRegion r : regions)
 		{
 			if(!r.flags.contains(Flag.burn))
