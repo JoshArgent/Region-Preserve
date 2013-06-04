@@ -18,6 +18,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
+import org.bukkit.event.player.PlayerTeleportEvent;
+import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
@@ -460,7 +462,7 @@ public class RegionPreserve extends JavaPlugin implements Listener {
 					event.getPlayer().sendMessage(ChatColor.DARK_RED + this.getConfig().getString("message"));
 				}
 			}
-		}
+			}
 		}
 	}
 	
@@ -564,6 +566,27 @@ public class RegionPreserve extends JavaPlugin implements Listener {
 		}
 	}
 	
+	@EventHandler
+	public void PlayerTeleport(PlayerTeleportEvent event)
+	{
+		for (ActiveRegion r : regions)
+		{
+			if(!r.flags.contains(Flag.enderpearl))
+			{
+			if(r.isLocationInRegion(event.getPlayer().getLocation()))
+			{
+				if(event.getCause() == TeleportCause.ENDER_PEARL)
+				{
+				if(!(event.getPlayer().hasPermission("rp.build") || event.getPlayer().isOp())) 
+				{
+					event.setCancelled(true);
+					event.getPlayer().sendMessage(ChatColor.DARK_RED + this.getConfig().getString("message"));
+				}
+				}
+			}
+			}
+		}
+	}
 	
 	
 }

@@ -107,7 +107,7 @@ public class RegionPreserveCommand {
 							catch(Exception ex)
 							{
 								sender.sendMessage(ChatColor.RED + "That is not one of the supported flags!");
-								sender.sendMessage(ChatColor.RED + "Supported Flags: use, build, burn, fade, grow, leafdecay, explode, bucket, monsterspawning, animalspawning, commands, mobdespawn, pvp");
+								sender.sendMessage(ChatColor.RED + "Supported Flags: use, build, burn, fade, grow, leafdecay, explode, bucket, monsterspawning, animalspawning, commands, mobdespawn, pvp, enderpeal");
 							}
 						}
 						else if(action.equalsIgnoreCase("remove"))
@@ -134,7 +134,7 @@ public class RegionPreserveCommand {
 							catch(Exception ex)
 							{
 								sender.sendMessage(ChatColor.RED + "That is not one of the supported flags!");
-								sender.sendMessage(ChatColor.RED + "Supported Flags: use, build, burn, fade, grow, leafdecay, explode, bucket, monsterspawning, animalspawning, commands, mobdespawn, pvp");
+								sender.sendMessage(ChatColor.RED + "Supported Flags: use, build, burn, fade, grow, leafdecay, explode, bucket, monsterspawning, animalspawning, commands, mobdespawn, pvp, enderpearl");
 							}
 						}
 						else

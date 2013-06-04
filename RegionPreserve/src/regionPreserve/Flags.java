@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Flags {
 
 	public enum Flag {
-		use, build, burn, fade, grow, leafdecay, explode, bucket, monsterspawning, animalspawning, commands, mobdespawn, pvp
+		use, build, burn, fade, grow, leafdecay, explode, bucket, monsterspawning, animalspawning, commands, mobdespawn, pvp, enderpearl
 	}
 	
 	public static Flag flagFromString(String value)
