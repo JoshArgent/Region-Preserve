@@ -1,8 +1,6 @@
 package regionPreserve;
 
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -11,8 +9,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-
-import regionPreserve.Flags.Flag;
 
 public class RegionLoading {
 		
@@ -47,44 +43,17 @@ public class RegionLoading {
 	
 	public static void SaveRegions(List<ActiveRegion> regions)
 	{
-		List<String> TextRegions = new ArrayList<String>();
+		FileConfiguration regionsData = null;
+		File regionsFile = new File("plugins/RegionPreserve", "regions.yml");
+		regionsData = YamlConfiguration.loadConfiguration(regionsFile);
 		for (ActiveRegion r : regions)
 		{
-			String flags = "";
-			for (Flag f : r.flags)
-			{
-				flags += "|" + f.toString();
-			}
-			String text = r.name + "|" + r.pointOne.getWorld().getName() + "|" + r.pointOne.getX() + "|" + r.pointOne.getY() + "|" + r.pointOne.getBlockZ() + "|" + r.pointTwo.getX() + "|" + r.pointTwo.getY() + "|" + r.pointTwo.getZ() + flags;
-			TextRegions.add(text);
+			regionsData.set(r.name + ".pos1", r.pointOne.toVector());
+			regionsData.set(r.name + ".pos2", r.pointTwo.toVector());
+			regionsData.set(r.name + ".world", r.pointOne.getWorld().getName());
+			regionsData.set(r.name + ".flags", Flags.flagsListToStringList(r.flags));
 		}
-		WriteFile("plugins/RegionPreserve/regions.txt", TextRegions);
 		System.out.print("[RegionPreserve] Saved regions!");
 	}
-	
-	private static void WriteFile(String path, List<String> text)
-	{
-		FileWriter writer = null;
-		try {
-			writer = new FileWriter(path);
-		} catch (IOException e) {
-			e.printStackTrace();
-		} 
-		for(String str: text) {
-		  try {
-			writer.write(str + "\n");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		}
-		try {
-			writer.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	
-
 
 }
