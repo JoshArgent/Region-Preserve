@@ -1,9 +1,3 @@
-## RegionPreserve Config File
-## Version 1.4.0
-## Do not remove/add any thing! Just edit the values
-##
-## message - The message displayed when someone tries to build in a protected region
 message: 'You do not have permission to do that here!'
-##
-## Do not edit this. No really - don't!
+auto-update: true
 version: 1.4
