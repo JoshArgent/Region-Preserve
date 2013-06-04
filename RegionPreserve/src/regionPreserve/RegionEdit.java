@@ -26,18 +26,10 @@ public class RegionEdit {
 				marked.remove(p);
 				ActiveRegion ar = new ActiveRegion(name, r.pointOne, r.pointTwo);
 				// add default flags
-				if(plugin.getConfig().getBoolean("flags.use")) { ar.flags.add(Flag.use); }
-				if(plugin.getConfig().getBoolean("flags.build")) { ar.flags.add(Flag.build); }
-				if(plugin.getConfig().getBoolean("flags.burn")) { ar.flags.add(Flag.burn); }
-				if(plugin.getConfig().getBoolean("flags.fade")) { ar.flags.add(Flag.fade); }
-				if(plugin.getConfig().getBoolean("flags.grow")) { ar.flags.add(Flag.grow); }
-				if(plugin.getConfig().getBoolean("flags.leafdecay")) { ar.flags.add(Flag.leafdecay); }
-				if(plugin.getConfig().getBoolean("flags.explode")) { ar.flags.add(Flag.explode); }
-				if(plugin.getConfig().getBoolean("flags.monsterspawning")) { ar.flags.add(Flag.monsterspawning); }
-				if(plugin.getConfig().getBoolean("flags.animalspawning")) { ar.flags.add(Flag.animalspawning); }
-				if(plugin.getConfig().getBoolean("flags.commands")) { ar.flags.add(Flag.commands); }
-				if(plugin.getConfig().getBoolean("flags.mobdespawn")) { ar.flags.add(Flag.mobdespawn); }
-				if(plugin.getConfig().getBoolean("flags.pvp")) { ar.flags.add(Flag.pvp); }
+				ar.flags.add(Flag.use);
+				ar.flags.add(Flag.commands);
+				ar.flags.add(Flag.animalspawning);
+				ar.flags.add(Flag.mobdespawn);
 				// save the region
 				RegionPreserve.regions.add(ar);
 				RegionLoading.SaveRegions(RegionPreserve.regions);
