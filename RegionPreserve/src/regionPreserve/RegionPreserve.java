@@ -55,6 +55,7 @@ public class RegionPreserve extends JavaPlugin implements Listener {
 		    copy(this.getResource("regions.txt"), regionFile);
 		}
 		this.Update.UpdateConfigFile();
+		this.Update.UpdateRegions();
 	}
 	
 	public void updateRegions()
