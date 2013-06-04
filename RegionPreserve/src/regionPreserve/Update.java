@@ -3,11 +3,8 @@ package regionPreserve;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -35,7 +32,7 @@ public class Update {
 			if(configFile.exists())
 			{
 				configFile.delete();
-			    copy(this.plugin.getResource("config.yml"), configFile);
+				Functions.copy(this.plugin.getResource("config.yml"), configFile);
 			    String message = this.plugin.getConfig().getString("message");
 			    this.plugin.reloadConfig();
 			    this.plugin.getConfig().set("message", message);
@@ -70,21 +67,6 @@ public class Update {
 			
 		}
 	}
-	
-	private void copy(InputStream in, File file) {
-        try {
-            OutputStream out = new FileOutputStream(file);
-            byte[] buf = new byte[1024];
-            int len;
-            while((len=in.read(buf))>0){
-                out.write(buf,0,len);
-            }
-            out.close();
-            in.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 	
 	public static List<ActiveRegion> LoadOldRegions() // Load outdated regions
 	{

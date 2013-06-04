@@ -1,9 +1,6 @@
 package regionPreserve;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +34,6 @@ public class RegionPreserve extends JavaPlugin implements Listener {
 		this.Update = new Update(this);
 		loadConfiguration();
 		regions = RegionLoading.LoadRegions();
-		updateRegions();
 		BukkitTask task = new CheckEntities(this).runTaskTimer(this, 0, 100);
 		if(task == null){	} // just the keep Eclipse happy :)
 		System.out.print("[RegionPreserve] RegionPreserve enabled!");
@@ -48,53 +44,14 @@ public class RegionPreserve extends JavaPlugin implements Listener {
 		File configFile = new File(this.getDataFolder(), "config.yml");     
 		if(!configFile.exists()){
 		    configFile.getParentFile().mkdirs();
-		    copy(this.getResource("config.yml"), configFile);
+		    Functions.copy(this.getResource("config.yml"), configFile);
 		}
 		File regionFile = new File(this.getDataFolder(), "regions.txt");     
 		if(!regionFile.exists()){
-		    copy(this.getResource("regions.txt"), regionFile);
+		    Functions.copy(this.getResource("regions.txt"), regionFile);
 		}
 		this.Update.UpdateConfigFile();
 		this.Update.UpdateRegions();
-	}
-	
-	public void updateRegions()
-	{
-		if(oldVersion.equalsIgnoreCase("1.0.0")) // 1.0.0 to 1.3.0
-		{
-			System.out.print("[RegionPreserve] Updating regions to 1.3.0");
-			List<ActiveRegion> newregions = new ArrayList<ActiveRegion>();
-			for (ActiveRegion ar : regions)
-			{
-				if(getConfig().getBoolean("flags.use")) { ar.flags.add(Flag.use); }
-				if(getConfig().getBoolean("flags.build")) { ar.flags.add(Flag.build); }
-				if(getConfig().getBoolean("flags.burn")) { ar.flags.add(Flag.burn); }
-				if(getConfig().getBoolean("flags.fade")) { ar.flags.add(Flag.fade); }
-				if(getConfig().getBoolean("flags.grow")) { ar.flags.add(Flag.grow); }
-				if(getConfig().getBoolean("flags.leafdecay")) { ar.flags.add(Flag.leafdecay); }
-				if(getConfig().getBoolean("flags.explode")) { ar.flags.add(Flag.explode); }
-				if(getConfig().getBoolean("flags.monsterspawning")) { ar.flags.add(Flag.monsterspawning); }
-				if(getConfig().getBoolean("flags.animalspawning")) { ar.flags.add(Flag.animalspawning); }
-				if(getConfig().getBoolean("flags.pvp")) { ar.flags.add(Flag.pvp); }
-				ar.flags.add(Flag.commands);
-				newregions.add(ar);
-			}
-			RegionLoading.SaveRegions(newregions);
-			RegionLoading.LoadRegions();
-		}
-		if(oldVersion.equalsIgnoreCase("1.2.0")) // 1.2.0 to 1.3.0
-		{
-			System.out.print("[RegionPreserve] Updating regions to 1.3.0");
-			List<ActiveRegion> newregions = new ArrayList<ActiveRegion>();
-			for (ActiveRegion ar : regions)
-			{
-				ar.flags.add(Flag.mobdespawn);
-				if(getConfig().getBoolean("flags.pvp")) { ar.flags.add(Flag.pvp); }
-				newregions.add(ar);
-			}
-			RegionLoading.SaveRegions(newregions);
-			RegionLoading.LoadRegions();
-		}
 	}
 		
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
@@ -104,22 +61,7 @@ public class RegionPreserve extends JavaPlugin implements Listener {
 		}
 		return false;
 	}
-	
-	private void copy(InputStream in, File file) {
-        try {
-            OutputStream out = new FileOutputStream(file);
-            byte[] buf = new byte[1024];
-            int len;
-            while((len=in.read(buf))>0){
-                out.write(buf,0,len);
-            }
-            out.close();
-            in.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-	
+
 	// World events are handled from here on:
 	
 	@EventHandler
