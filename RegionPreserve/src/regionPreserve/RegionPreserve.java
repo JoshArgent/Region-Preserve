@@ -92,7 +92,7 @@ public class RegionPreserve extends JavaPlugin implements Listener {
 		if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK))
 		{
 			Material type = event.getClickedBlock().getType();
-			if(type.equals(Material.CHEST) || type.equals(Material.LOCKED_CHEST) || type.equals(Material.DISPENSER) || type.equals(Material.WORKBENCH) || type.equals(Material.JUKEBOX) || type.equals(Material.BREWING_STAND) || type.equals(Material.ANVIL) || type.equals(Material.CAULDRON) || type.equals(Material.FURNACE) || type.equals(Material.DROPPER) || type.equals(Material.ENCHANTMENT_TABLE) || type.equals(Material.STONE_BUTTON) || type.equals(Material.WOOD_BUTTON) || type.equals(Material.WOOD_DOOR) || type.equals(Material.IRON_DOOR) || type.equals(Material.TRAP_DOOR) || type.equals(Material.ENDER_CHEST) || type.equals(Material.BEACON) || type.equals(Material.WOODEN_DOOR))
+			if(type.equals(Material.CHEST) || type.equals(Material.LOCKED_CHEST) || type.equals(Material.DISPENSER) || type.equals(Material.DROPPER) || type.equals(Material.WORKBENCH) || type.equals(Material.JUKEBOX) || type.equals(Material.BREWING_STAND) || type.equals(Material.ANVIL) || type.equals(Material.CAULDRON) || type.equals(Material.FURNACE) || type.equals(Material.DROPPER) || type.equals(Material.ENCHANTMENT_TABLE) || type.equals(Material.STONE_BUTTON) || type.equals(Material.WOOD_BUTTON) || type.equals(Material.WOOD_DOOR) || type.equals(Material.IRON_DOOR) || type.equals(Material.TRAP_DOOR) || type.equals(Material.ENDER_CHEST) || type.equals(Material.BEACON) || type.equals(Material.WOODEN_DOOR))
 			{
 				for (ActiveRegion r : regions)
 				{
