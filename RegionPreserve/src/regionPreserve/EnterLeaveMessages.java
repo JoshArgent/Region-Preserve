@@ -36,20 +36,20 @@ public class EnterLeaveMessages implements RegionListener {
 	}
 
 	@Override
-	public void PlayerEnterEvent(ActiveRegion sender, Player player) {
-		// TODO Auto-generated method stub
+	public void PlayerEnterEvent(ActiveRegion sender, Player player) 
+	{
 		if(!sender.enterMessage.equalsIgnoreCase(""))
 		{
-			player.sendMessage(sender.enterMessage);
+			player.sendMessage(Functions.convertColours(sender.enterMessage));
 		}
 	}
 
 	@Override
-	public void PlayerLeaveEvent(ActiveRegion sender, Player player) {
-		// TODO Auto-generated method stub
+	public void PlayerLeaveEvent(ActiveRegion sender, Player player) 
+	{
 		if(!sender.leaveMessage.equalsIgnoreCase(""))
 		{
-			player.sendMessage(sender.leaveMessage);
+			player.sendMessage(Functions.convertColours(sender.leaveMessage));
 		}
 	}
 

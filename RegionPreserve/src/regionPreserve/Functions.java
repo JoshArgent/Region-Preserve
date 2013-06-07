@@ -5,6 +5,8 @@ import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import org.bukkit.ChatColor;
+
 public class Functions {
 
 	public static void copy(InputStream in, File file) {
@@ -21,5 +23,11 @@ public class Functions {
             e.printStackTrace();
         }
     }
+	
+	public static String convertColours(String text)
+	{
+		String coloured = ChatColor.translateAlternateColorCodes(("&").charAt(0), text);
+		return coloured;
+	}
 	
 }

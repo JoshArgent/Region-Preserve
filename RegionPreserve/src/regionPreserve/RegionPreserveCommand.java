@@ -54,7 +54,7 @@ public class RegionPreserveCommand {
 					{
 						if(args[2].equalsIgnoreCase("enter"))
 						{
-							if(args.length != 4)
+							if(args.length < 4)
 							{
 								// Remove enter message
 								EnterLeaveMessages.setEnterMessage((Player) sender, args[1], "");
@@ -62,12 +62,25 @@ public class RegionPreserveCommand {
 							else
 							{
 								// Set enter message
-								EnterLeaveMessages.setEnterMessage((Player) sender, args[1], args[3]);
+								StringBuilder builder = new StringBuilder();
+								int num = 0;
+								for (String string : args) {
+									if(num > 2)
+									{
+										if(builder.length() > 0) {
+											builder.append(" ");
+								    	}
+										builder.append(string);
+									}
+								    num += 1;
+								}
+								String msg = builder.toString();
+								EnterLeaveMessages.setEnterMessage((Player) sender, args[1], msg);
 							}
 						}
 						else if(args[2].equalsIgnoreCase("leave"))
 						{
-							if(args.length != 4)
+							if(args.length < 4)
 							{
 								// Remove leave message
 								EnterLeaveMessages.setLeaveMessage((Player) sender, args[1], "");
@@ -75,7 +88,20 @@ public class RegionPreserveCommand {
 							else
 							{
 								// Set leave message
-								EnterLeaveMessages.setLeaveMessage((Player) sender, args[1], args[3]);
+								StringBuilder builder = new StringBuilder();
+								int num = 0;
+								for (String string : args) {
+									if(num > 2)
+									{
+										if(builder.length() > 0) {
+											builder.append(" ");
+								    	}
+										builder.append(string);
+									}
+								    num += 1;
+								}
+								String msg = builder.toString();
+								EnterLeaveMessages.setLeaveMessage((Player) sender, args[1], msg);
 							}
 						}
 						else
