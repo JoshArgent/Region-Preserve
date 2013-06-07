@@ -273,7 +273,8 @@ public class RegionPreserveCommand {
 		  sender.sendMessage(ChatColor.BLUE + "/rp create [name] " + ChatColor.WHITE + "- Creates a region from two selected points");
 		  sender.sendMessage(ChatColor.BLUE + "/rp delete [name] " + ChatColor.WHITE + "- Deletes a region");
 		  sender.sendMessage(ChatColor.BLUE + "/rp max " + ChatColor.WHITE + "- Maxes the current selection from sky to bedrock");
-		  sender.sendMessage(ChatColor.BLUE + "/rp flag [region] [add/remove] [flag] " + ChatColor.WHITE + "- Add or remove flags.");
+		  sender.sendMessage(ChatColor.BLUE + "/rp flag [region] [add/remove] [flag] " + ChatColor.WHITE + "- Add or remove flags");
+		  sender.sendMessage(ChatColor.BLUE + "/rp set [region] [enter/leave] [message] " + ChatColor.WHITE + "- Sets a regions enter/leave message");
 		  sender.sendMessage(ChatColor.BLUE + "/rp info " + ChatColor.WHITE + "- Displays region information");
 		  sender.sendMessage(ChatColor.BLUE + "/rp reload " + ChatColor.WHITE + "- Reloads the RegionPreserve config file");
 		  sender.sendMessage(ChatColor.BLUE + "/rp help " + ChatColor.WHITE + "- Displays this message");
