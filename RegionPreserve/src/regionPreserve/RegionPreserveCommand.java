@@ -57,14 +57,12 @@ public class RegionPreserveCommand {
 							if(args.length != 4)
 							{
 								// Remove enter message
-								EnterLeaveMessages.setEnterMessage(args[1], "");
-								sender.sendMessage(ChatColor.GREEN + "Region enter message removed!");
+								EnterLeaveMessages.setEnterMessage((Player) sender, args[1], "");
 							}
 							else
 							{
 								// Set enter message
-								EnterLeaveMessages.setEnterMessage(args[1], args[3]);
-								sender.sendMessage(ChatColor.GREEN + "Region enter message set!");
+								EnterLeaveMessages.setEnterMessage((Player) sender, args[1], args[3]);
 							}
 						}
 						else if(args[2].equalsIgnoreCase("leave"))
