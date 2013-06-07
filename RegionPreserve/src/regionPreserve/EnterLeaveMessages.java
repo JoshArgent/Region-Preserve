@@ -40,7 +40,8 @@ public class EnterLeaveMessages implements RegionListener {
 	{
 		if(!sender.enterMessage.equalsIgnoreCase(""))
 		{
-			player.sendMessage(Functions.convertColours(sender.enterMessage));
+			String msg = Functions.convertColours(sender.enterMessage).replace("%player%", player.getName());
+			player.sendMessage(msg);
 		}
 	}
 
@@ -49,7 +50,8 @@ public class EnterLeaveMessages implements RegionListener {
 	{
 		if(!sender.leaveMessage.equalsIgnoreCase(""))
 		{
-			player.sendMessage(Functions.convertColours(sender.leaveMessage));
+			String msg = Functions.convertColours(sender.leaveMessage).replace("%player%", player.getName());
+			player.sendMessage(msg);
 		}
 	}
 
