@@ -229,6 +229,8 @@ public class RegionPreserveCommand {
 						{
 							sender.sendMessage(ChatColor.GREEN + "You are currently in the region '" + r.name + "'.");
 							sender.sendMessage(ChatColor.GREEN + "Region flags: '" + Joiner.on(", ").join(r.flags) + "'.");
+							sender.sendMessage(ChatColor.GREEN + "Enter message: '" + r.enterMessage + "'.");
+							sender.sendMessage(ChatColor.GREEN + "Leave message: '" + r.leaveMessage + "'.");
 							inRegion = true;
 						}
 					}
