@@ -14,6 +14,8 @@ public class ActiveRegion extends Region {
 	
 	public String name;
 	public List<Flags.Flag> flags = new ArrayList<Flags.Flag>();
+	public String enterMessage;
+	public String leaveMessage;
 	
 	public boolean isLocationInRegion(Location l)
 	{

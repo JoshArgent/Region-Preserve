@@ -47,6 +47,42 @@ public class RegionPreserveCommand {
 						sender.sendMessage(ChatColor.RED + "Too few/many parameters!");
 					}
 				}
+				else if(args[0].equalsIgnoreCase("set"))
+				{
+					// /rp set <regionname> enter <message> command
+					if(args.length >= 3)
+					{
+						if(args[2].equalsIgnoreCase("enter"))
+						{
+							if(args.length != 4)
+							{
+								// Remove enter message
+								EnterLeaveMessages.setEnterMessage(args[1], "");
+								sender.sendMessage(ChatColor.GREEN + "Region enter message removed!");
+							}
+							else
+							{
+								// Set enter message
+								EnterLeaveMessages.setEnterMessage(args[1], args[3]);
+								sender.sendMessage(ChatColor.GREEN + "Region enter message set!");
+							}
+						}
+						else if(args[2].equalsIgnoreCase("leave"))
+						{
+							
+						}
+						else
+						{
+							// Needs to choose enter/leave
+							sender.sendMessage(ChatColor.RED + "You can only set enter and leave messages.");
+						}
+					}
+					else
+					{
+						// wrong amount of args
+						sender.sendMessage(ChatColor.RED + "Too few/many parameters!");
+					}
+				}
 				else if(args[0].equalsIgnoreCase("max"))
 				{
 					RegionEdit.MaxOutY((Player) sender);
