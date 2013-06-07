@@ -58,6 +58,8 @@ public class Update {
 				regions.set(r.name + ".pos2", r.pointTwo.toVector());
 				regions.set(r.name + ".world", r.pointOne.getWorld().getName());
 				regions.set(r.name + ".flags", Flags.flagsListToStringList(r.flags));
+				regions.set(r.name + ".enter", "");
+				regions.set(r.name + ".leave", "");
 			}
 			try {
 				regions.save(regionsFile);

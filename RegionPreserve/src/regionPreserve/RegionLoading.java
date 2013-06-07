@@ -30,6 +30,8 @@ public class RegionLoading {
 				ActiveRegion ar = new ActiveRegion(name, pos1, pos2);
 				List<Flags.Flag> flags = Flags.stringListToFlagList(regionsData.getStringList(key + ".flags"));
 				ar.flags = flags;
+				ar.enterMessage = regionsData.getString(key + ".enter");
+				ar.leaveMessage = regionsData.getString(key + ".leave");
 				regions.add(ar);
 			}
 			else
@@ -53,6 +55,8 @@ public class RegionLoading {
 			regionsData.set(r.name + ".pos2", r.pointTwo.toVector());
 			regionsData.set(r.name + ".world", r.pointOne.getWorld().getName());
 			regionsData.set(r.name + ".flags", Flags.flagsListToStringList(r.flags));
+			regionsData.set(r.name + ".enter", r.enterMessage);
+			regionsData.set(r.name + ".leave", r.leaveMessage);
 		}
 		try {
 			regionsData.save(regionsFile);
