@@ -18,6 +18,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -592,6 +593,15 @@ public class RegionPreserve extends JavaPlugin implements Listener {
 				}
 			}
 			}
+		}
+	}
+	
+	@EventHandler
+	public void PlayerMove(PlayerMoveEvent event)
+	{
+		for (ActiveRegion r : regions)
+		{
+			r.PlayerMove(event);
 		}
 	}
 	

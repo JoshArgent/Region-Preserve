@@ -32,6 +32,7 @@ public class RegionLoading {
 				ar.flags = flags;
 				ar.enterMessage = regionsData.getString(key + ".enter");
 				ar.leaveMessage = regionsData.getString(key + ".leave");
+				ar.addListener(new EnterLeaveMessages());
 				regions.add(ar);
 			}
 			else
@@ -39,7 +40,6 @@ public class RegionLoading {
 				System.out.print("[RegionPreserve] The world '" + regionsData.getString(key + ".world") + "' does not exist!");
 			}
 		}
-		
 		System.out.print("[RegionPreserve] Loaded regions!");
 		return regions;
 	}

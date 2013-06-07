@@ -3,8 +3,8 @@ package regionPreserve;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-public class EnterLeaveMessages {
-	
+public class EnterLeaveMessages implements RegionListener {
+		
 	public static void setEnterMessage(Player sender, String regionName, String message)
 	{
 		for (ActiveRegion region : RegionPreserve.regions)
@@ -34,5 +34,18 @@ public class EnterLeaveMessages {
 		}
 		sender.sendMessage(ChatColor.RED + "That region does not exist!");
 	}
+
+	@Override
+	public void PlayerEnterEvent(ActiveRegion sender, Player player) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void PlayerLeaveEvent(ActiveRegion sender, Player player) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }

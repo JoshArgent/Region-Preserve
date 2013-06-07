@@ -4,9 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Location;
+import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerMoveEvent;
+
+interface RegionListener {
+	public void PlayerEnterEvent(ActiveRegion sender, Player player);
+	public void PlayerLeaveEvent(ActiveRegion sender, Player player);
+}
 
 public class ActiveRegion extends Region {
 
+	List<RegionListener> listeners = new ArrayList<RegionListener>();
+	
 	ActiveRegion(String regionName, Location p1, Location p2) {
 		super(p1, p2);
 		name = regionName;
@@ -47,7 +56,26 @@ public class ActiveRegion extends Region {
 		return false;
 	}
 	
+	public void PlayerMove(PlayerMoveEvent event)
+	{
+		
+	}
 	
+	public void addListener(RegionListener toAdd) {
+        listeners.add(toAdd);
+    }
+	
+	private void PlayerEnter(Player player)
+	{
+		for (RegionListener hl : listeners)
+            hl.PlayerEnterEvent(this, player);
+	}
+	
+	private void PlayerLeave(Player player)
+	{
+		for (RegionListener hl : listeners)
+            hl.PlayerLeaveEvent(this, player);
+	}
 	
 
 }
