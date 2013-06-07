@@ -50,10 +50,6 @@ public class RegionPreserve extends JavaPlugin implements Listener {
 		    configFile.getParentFile().mkdirs();
 		    Functions.copy(this.getResource("config.yml"), configFile);
 		}
-		File regionFile = new File(this.getDataFolder(), "regions.txt");     
-		if(!regionFile.exists()){
-		    Functions.copy(this.getResource("regions.txt"), regionFile);
-		}
 		this.Update.UpdateConfigFile();
 		this.Update.UpdateRegions();
 		if(this.getConfig().getBoolean("auto-update"))
