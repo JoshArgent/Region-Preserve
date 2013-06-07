@@ -6,6 +6,7 @@ import java.util.List;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 interface RegionListener {
 	public void PlayerEnterEvent(ActiveRegion sender, Player player);
@@ -15,6 +16,7 @@ interface RegionListener {
 public class ActiveRegion extends Region {
 
 	List<RegionListener> listeners = new ArrayList<RegionListener>();
+	List<String> PlayersInRegion = new ArrayList<String>();
 	
 	ActiveRegion(String regionName, Location p1, Location p2) {
 		super(p1, p2);
@@ -58,7 +60,32 @@ public class ActiveRegion extends Region {
 	
 	public void PlayerMove(PlayerMoveEvent event)
 	{
-		
+		if(isLocationInRegion(event.getTo()))
+		{
+			if(!PlayersInRegion.contains(event.getPlayer().getName()))
+			{
+				// Moved into region
+				PlayersInRegion.add(event.getPlayer().getName());
+				PlayerEnter(event.getPlayer());
+			}
+		}
+		else
+		{
+			if(PlayersInRegion.contains(event.getPlayer().getName()))
+			{
+				// Moved out of region
+				PlayersInRegion.remove(event.getPlayer().getName());
+				PlayerLeave(event.getPlayer());
+			}
+		}
+	}
+	
+	public void PlayerQuit(PlayerQuitEvent event)
+	{
+		if(PlayersInRegion.contains(event.getPlayer().getName()))
+		{
+			PlayersInRegion.remove(event.getPlayer().getName());
+		}
 	}
 	
 	public void addListener(RegionListener toAdd) {
