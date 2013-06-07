@@ -67,7 +67,16 @@ public class RegionPreserveCommand {
 						}
 						else if(args[2].equalsIgnoreCase("leave"))
 						{
-							
+							if(args.length != 4)
+							{
+								// Remove leave message
+								EnterLeaveMessages.setLeaveMessage((Player) sender, args[1], "");
+							}
+							else
+							{
+								// Set leave message
+								EnterLeaveMessages.setLeaveMessage((Player) sender, args[1], args[3]);
+							}
 						}
 						else
 						{
