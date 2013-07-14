@@ -38,7 +38,7 @@ public class EnterLeaveMessages implements RegionListener {
 	@Override
 	public void PlayerEnterEvent(ActiveRegion sender, Player player) 
 	{
-		if(!sender.enterMessage.equalsIgnoreCase(""))
+		if(sender.enterMessage != null)
 		{
 			String msg = Functions.convertColours(sender.enterMessage).replace("%player%", player.getName());
 			player.sendMessage(msg);
@@ -48,7 +48,7 @@ public class EnterLeaveMessages implements RegionListener {
 	@Override
 	public void PlayerLeaveEvent(ActiveRegion sender, Player player) 
 	{
-		if(!sender.leaveMessage.equalsIgnoreCase(""))
+		if(sender.leaveMessage != null)
 		{
 			String msg = Functions.convertColours(sender.leaveMessage).replace("%player%", player.getName());
 			player.sendMessage(msg);
