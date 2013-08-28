@@ -44,6 +44,20 @@ public class RegionLoading {
 		return regions;
 	}
 	
+	public static void RemoveRegion(ActiveRegion region)
+	{
+		FileConfiguration regionsData = null;
+		File regionsFile = new File("plugins/RegionPreserve", "regions.yml");
+		regionsData = YamlConfiguration.loadConfiguration(regionsFile);
+		regionsData.set(region.name, null);
+		try {
+			regionsData.save(regionsFile);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		System.out.print("[RegionPreserve] Saved regions!");
+	}
+	
 	public static void SaveRegions(List<ActiveRegion> regions)
 	{
 		FileConfiguration regionsData = null;

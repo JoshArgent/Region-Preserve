@@ -1,8 +1,6 @@
 package regionPreserve;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import org.bukkit.ChatColor;
@@ -51,20 +49,15 @@ public class RegionEdit {
 		boolean found = false;
 		if(RegionPreserve.regions.size() > 0)
 		{
-			List<ActiveRegion> regions = new ArrayList<ActiveRegion>();
 			for (ActiveRegion r : RegionPreserve.regions)
 			{
 				if(r.name.equalsIgnoreCase(name))
 				{
+					RegionLoading.RemoveRegion(r);
+					RegionPreserve.regions = RegionLoading.LoadRegions();
 					found = true;
 				}
-				else
-				{
-					regions.add(r);
-				}
 			}
-			RegionLoading.SaveRegions(regions);
-			RegionPreserve.regions = RegionLoading.LoadRegions();
 		}
 		if(found)
 		{
