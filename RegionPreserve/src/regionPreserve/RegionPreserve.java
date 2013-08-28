@@ -18,6 +18,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
+import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
@@ -365,8 +366,8 @@ public class RegionPreserve extends JavaPlugin implements Listener {
 			{
 				if(!(event.getPlayer().hasPermission("rp.build") || event.getPlayer().isOp())) 
 				{
-				event.setCancelled(true);
-				event.getPlayer().sendMessage(ChatColor.DARK_RED + this.getConfig().getString("message"));
+					event.setCancelled(true);
+					event.getPlayer().sendMessage(ChatColor.DARK_RED + this.getConfig().getString("message"));
 				}
 			}
 		}
@@ -589,6 +590,29 @@ public class RegionPreserve extends JavaPlugin implements Listener {
 				}
 				}
 			}
+			}
+		}
+	}
+	
+	@EventHandler
+	public void EntityShootBow(EntityShootBowEvent event)
+	{
+		if(event.getEntityType().equals(EntityType.PLAYER))
+		{
+			Player p = (Player) event.getEntity();
+			for (ActiveRegion r : regions)
+			{
+				if(!r.flags.contains(Flag.pvp))
+				{
+					if(r.isLocationInRegion(p.getLocation()))
+					{
+						if(!(p.hasPermission("rp.build") || p.isOp())) 
+						{
+							event.setCancelled(true);
+							p.sendMessage(ChatColor.DARK_RED + this.getConfig().getString("message"));
+						}
+					}
+				}
 			}
 		}
 	}
