@@ -30,4 +30,26 @@ public class Functions {
 		return coloured;
 	}
 	
+	public static boolean compareVersions(String v1, String v2) // Is V1 > V2
+	{
+		if(v1.length() == 3) v1 += ".0";
+		if(v2.length() == 3) v2 += ".0";
+		String[] _v1 = v1.split("\\.");
+		String[] _v2 = v2.split("\\.");
+		if(Integer.valueOf(_v1[0]) > Integer.valueOf(_v2[0])) return true;
+		else if(Integer.valueOf(_v1[0]) == Integer.valueOf(_v2[0]))
+		{
+			if(Integer.valueOf(_v1[1]) > Integer.valueOf(_v2[1])) return true;
+			else if(Integer.valueOf(_v1[1]) == Integer.valueOf(_v2[1]))
+			{
+				if(Integer.valueOf(_v1[2]) > Integer.valueOf(_v2[2])) return true;
+				else if(Integer.valueOf(_v1[2]) == Integer.valueOf(_v2[2]))
+				{
+					return false;
+				}
+			}
+		}
+		return false;
+	}
+	
 }

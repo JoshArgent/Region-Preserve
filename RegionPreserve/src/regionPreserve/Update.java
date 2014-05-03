@@ -25,7 +25,7 @@ public class Update {
 	
 	public void UpdateConfigFile()
 	{
-		if(!this.plugin.getConfig().getString("version").equalsIgnoreCase("1.4"))
+		if(Functions.compareVersions("1.4", this.plugin.getConfig().getString("version")))
 		{
 			// Update to 1.4 config
 			File configFile = new File(this.plugin.getDataFolder(), "config.yml");     
@@ -39,6 +39,11 @@ public class Update {
 			    this.plugin.saveConfig();
 			    this.plugin.getLogger().log(Level.INFO, "[RegionPreserve] Updating config to 1.4 layout");
 			}
+		}
+		if(Functions.compareVersions("1.4.2", this.plugin.getConfig().getString("version")))
+		{
+			this.plugin.getConfig().set("version", "1.4.2");
+			this.plugin.saveConfig();
 		}
 	}
 	
