@@ -53,11 +53,6 @@ public class RegionPreserve extends JavaPlugin implements Listener {
 		}
 		this.Update.UpdateConfigFile();
 		this.Update.UpdateRegions();
-		if(this.getConfig().getBoolean("auto-update"))
-		{
-			@SuppressWarnings("unused")
-			Updater updater = new Updater(this, "region-preserve", this.getFile(), Updater.UpdateType.DEFAULT, true);
-		}
 	}
 		
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
