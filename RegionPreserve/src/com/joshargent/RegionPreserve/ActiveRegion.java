@@ -112,6 +112,11 @@ public class ActiveRegion extends Region {
 		return false;
 	}
 	
+	public boolean canPlayerEdit(Player p)
+	{
+		return (p.hasPermission("rp.build." + getName()) || p.hasPermission("rp.build.*"));
+	}
+	
 	public void PlayerMove(PlayerMoveEvent event)
 	{
 		if(isLocationInRegion(event.getTo()))
