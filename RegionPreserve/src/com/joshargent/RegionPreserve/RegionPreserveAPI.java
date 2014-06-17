@@ -29,6 +29,7 @@ public class RegionPreserveAPI {
 		if(name == null) name = Functions.randomString(10);
 		ActiveRegion region = new ActiveRegion(name, pos1, pos2, save);
 		regionPreservePlugin.regions.add(region);
+		if(save) RegionLoading.SaveRegions(regionPreservePlugin.regions);
 		return region;
 	}
 	
