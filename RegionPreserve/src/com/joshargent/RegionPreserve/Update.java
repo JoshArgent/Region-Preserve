@@ -14,6 +14,8 @@ import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
+import com.joshargent.RegionPreserve.Flags.Flag;
+
 public class Update {
 	
 	private RegionPreservePlugin plugin;
@@ -25,9 +27,8 @@ public class Update {
 	
 	public void UpdateConfigFile()
 	{
-		if(Functions.compareVersions("1.4", this.plugin.getConfig().getString("version")))
-		{
-			// Update to 1.4 config
+		if(Functions.compareVersions("1.4", this.plugin.getConfig().getString("version"))) // Update to 1.4.0
+		{ 
 			File configFile = new File(this.plugin.getDataFolder(), "config.yml");     
 			if(configFile.exists())
 			{
@@ -40,14 +41,25 @@ public class Update {
 			    this.plugin.getLogger().log(Level.INFO, "[RegionPreserve] Updating config to 1.4 layout");
 			}
 		}
-		if(Functions.compareVersions("1.4.2", this.plugin.getConfig().getString("version")))
+		if(Functions.compareVersions("1.4.2", this.plugin.getConfig().getString("version"))) // Update to 1.4.2
 		{
 			this.plugin.getConfig().set("version", "1.4.2");
 			this.plugin.saveConfig();
 		}
+		if(Functions.compareVersions("1.5.0", this.plugin.getConfig().getString("version"))) // Update to 1.5.0
+		{
+			this.plugin.regions = RegionLoading.LoadRegions();
+			for(ActiveRegion r : this.plugin.regions)
+			{
+				r.addFlag(Flag.entry);
+			}
+			RegionLoading.SaveRegions(this.plugin.regions);
+			this.plugin.getConfig().set("version", "1.5.0");
+			this.plugin.saveConfig();
+		}
 	}
 	
-	public void UpdateRegions()
+	public void UpdateRegions() // Update from legacy to yml region format
 	{
 		File configFile = new File(this.plugin.getDataFolder(), "regions.txt");     
 		if(configFile.exists())

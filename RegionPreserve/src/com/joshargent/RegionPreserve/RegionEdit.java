@@ -28,6 +28,7 @@ public class RegionEdit {
 				ar.addFlag(Flag.commands);
 				ar.addFlag(Flag.animalspawning);
 				ar.addFlag(Flag.mobdespawn);
+				ar.addFlag(Flag.entry);
 				// save the region
 				plugin.regions.add(ar);
 				RegionLoading.SaveRegions(plugin.regions);

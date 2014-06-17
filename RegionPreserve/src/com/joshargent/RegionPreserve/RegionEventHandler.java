@@ -606,6 +606,20 @@ public class RegionEventHandler implements Listener {
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
+			if(!r.getFlags().contains(Flag.entry))
+			{
+				if(r.isLocationInRegion(event.getPlayer().getLocation()))
+				{
+					if(!(r.canPlayerEdit(event.getPlayer()) || event.getPlayer().isOp())) 
+					{
+						event.setCancelled(true);
+						return;
+					}
+				}
+			}
+		}
+		for (ActiveRegion r : plugin.regions)
+		{
 			r.PlayerMove(event);
 		}
 	}

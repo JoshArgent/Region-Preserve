@@ -1,6 +1,6 @@
 name: RegionPreserve
 main: com.joshargent.RegionPreserve.RegionPreserve
-version: 1.4.2
+version: 1.5.0
 commands:
   rp:
     description: Region Protection main command
