@@ -79,14 +79,14 @@ public class RegionEventHandler implements Listener {
 				{
 					if(!r.getFlags().contains(Flag.use))
 					{
-					if(r.isLocationInRegion(event.getClickedBlock().getLocation()))
-					{
-						if(!(event.getPlayer().hasPermission("rp.build") || event.getPlayer().isOp())) 
+						if(r.isLocationInRegion(event.getClickedBlock().getLocation()))
 						{
-							event.setCancelled(true);
-							event.getPlayer().sendMessage(ChatColor.DARK_RED + plugin.getConfig().getString("message"));
+							if(!(event.getPlayer().hasPermission("rp.build") || event.getPlayer().isOp())) 
+							{
+								event.setCancelled(true);
+								event.getPlayer().sendMessage(ChatColor.DARK_RED + plugin.getConfig().getString("message"));
+							}
 						}
-					}
 					}
 				}
 			}
@@ -101,14 +101,14 @@ public class RegionEventHandler implements Listener {
 				{
 					if(!r.getFlags().contains(Flag.build))
 					{
-					if(r.isLocationInRegion(event.getClickedBlock().getLocation()))
-					{
-						if(!(event.getPlayer().hasPermission("rp.build") || event.getPlayer().isOp())) 
+						if(r.isLocationInRegion(event.getClickedBlock().getLocation()))
 						{
-							event.setCancelled(true);
-							event.getPlayer().sendMessage(ChatColor.DARK_RED + plugin.getConfig().getString("message"));
+							if(!(event.getPlayer().hasPermission("rp.build") || event.getPlayer().isOp())) 
+							{
+								event.setCancelled(true);
+								event.getPlayer().sendMessage(ChatColor.DARK_RED + plugin.getConfig().getString("message"));
+							}
 						}
-					}
 					}
 				}
 			}
@@ -122,15 +122,15 @@ public class RegionEventHandler implements Listener {
 		{
 			if(!r.getFlags().contains(Flag.build))
 			{
-			if(r.isLocationInRegion(event.getBlock().getLocation()))
-			{
-				if(!(event.getPlayer().hasPermission("rp.build") || event.getPlayer().isOp())) 
+				if(r.isLocationInRegion(event.getBlock().getLocation()))
 				{
-					event.setCancelled(true);
-					event.getPlayer().sendMessage(ChatColor.DARK_RED + plugin.getConfig().getString("message"));
+					if(!(event.getPlayer().hasPermission("rp.build") || event.getPlayer().isOp())) 
+					{
+						event.setCancelled(true);
+						event.getPlayer().sendMessage(ChatColor.DARK_RED + plugin.getConfig().getString("message"));
+					}
 				}
 			}
-		}
 		}
 	}
 	
@@ -141,11 +141,11 @@ public class RegionEventHandler implements Listener {
 		{
 			if(!r.getFlags().contains(Flag.burn))
 			{
-			if(r.isLocationInRegion(event.getBlock().getLocation()))
-			{
-				event.setCancelled(true);
+				if(r.isLocationInRegion(event.getBlock().getLocation()))
+				{
+					event.setCancelled(true);
+				}
 			}
-		}
 		}
 	}
 
@@ -156,11 +156,11 @@ public class RegionEventHandler implements Listener {
 		{
 			if(!r.getFlags().contains(Flag.fade))
 			{
-			if(r.isLocationInRegion(event.getBlock().getLocation()))
-			{
-				event.setCancelled(true);
+				if(r.isLocationInRegion(event.getBlock().getLocation()))
+				{
+					event.setCancelled(true);
+				}
 			}
-		}
 		}
 	}
 	
@@ -187,11 +187,11 @@ public class RegionEventHandler implements Listener {
 		{
 			if(!r.getFlags().contains(Flag.grow))
 			{
-			if(r.isLocationInRegion(event.getBlock().getLocation()))
-			{
-				event.setCancelled(true);
+				if(r.isLocationInRegion(event.getBlock().getLocation()))
+				{
+					event.setCancelled(true);
+				}
 			}
-		}
 		}
 	}
 	
@@ -209,11 +209,11 @@ public class RegionEventHandler implements Listener {
 		{
 			if(!r.getFlags().contains(Flag.burn))
 			{
-			if(r.isLocationInRegion(event.getBlock().getLocation()))
-			{
-				event.setCancelled(true);
+				if(r.isLocationInRegion(event.getBlock().getLocation()))
+				{
+					event.setCancelled(true);
+				}
 			}
-		}
 		}
 	}
 
@@ -224,11 +224,11 @@ public class RegionEventHandler implements Listener {
 		{
 			if(!r.getFlags().contains(Flag.grow))
 			{
-			if(r.isLocationInRegion(event.getBlock().getLocation()))
-			{
-				event.setCancelled(true);
+				if(r.isLocationInRegion(event.getBlock().getLocation()))
+				{
+					event.setCancelled(true);
+				}
 			}
-		}
 		}
 	}
 		
@@ -239,11 +239,11 @@ public class RegionEventHandler implements Listener {
 		{
 			if(!r.getFlags().contains(Flag.leafdecay))
 			{
-			if(r.isLocationInRegion(event.getBlock().getLocation()))
-			{
-				event.setCancelled(true);
+				if(r.isLocationInRegion(event.getBlock().getLocation()))
+				{
+					event.setCancelled(true);
+				}
 			}
-		}
 		}
 	}
 	
@@ -254,11 +254,11 @@ public class RegionEventHandler implements Listener {
 		{
 			if(!r.getFlags().contains(Flag.build))
 			{
-			if(r.isLocationInRegion(event.getBlock().getLocation()))
-			{
-				event.setCancelled(true);
+				if(r.isLocationInRegion(event.getBlock().getLocation()))
+				{
+					event.setCancelled(true);
+				}
 			}
-		}
 		}
 	}
 	
@@ -269,15 +269,15 @@ public class RegionEventHandler implements Listener {
 		{
 			if(!r.getFlags().contains(Flag.build))
 			{
-			if(r.isLocationInRegion(event.getBlock().getLocation()))
-			{
-				if(!(event.getPlayer().hasPermission("rp.build") || event.getPlayer().isOp()))  
+				if(r.isLocationInRegion(event.getBlock().getLocation()))
 				{
-				event.setCancelled(true);
-				event.getPlayer().sendMessage(ChatColor.DARK_RED + plugin.getConfig().getString("message"));
+					if(!(event.getPlayer().hasPermission("rp.build") || event.getPlayer().isOp()))  
+					{
+					event.setCancelled(true);
+					event.getPlayer().sendMessage(ChatColor.DARK_RED + plugin.getConfig().getString("message"));
+					}
 				}
 			}
-		}
 		}
 	}
 
@@ -288,15 +288,15 @@ public class RegionEventHandler implements Listener {
 		{
 			if(!r.getFlags().contains(Flag.build))
 			{
-			if(r.isLocationInRegion(event.getBlock().getLocation()))
-			{
-				if(!(event.getPlayer().hasPermission("rp.build") || event.getPlayer().isOp())) 
+				if(r.isLocationInRegion(event.getBlock().getLocation()))
 				{
-				event.setCancelled(true);
-				event.getPlayer().sendMessage(ChatColor.DARK_RED + plugin.getConfig().getString("message"));
+					if(!(event.getPlayer().hasPermission("rp.build") || event.getPlayer().isOp())) 
+					{
+					event.setCancelled(true);
+					event.getPlayer().sendMessage(ChatColor.DARK_RED + plugin.getConfig().getString("message"));
+					}
 				}
 			}
-		}
 		}
 	}
 	
@@ -307,14 +307,14 @@ public class RegionEventHandler implements Listener {
 		{
 			if(!r.getFlags().contains(Flag.explode))
 			{
-			for (Block b : event.blockList())
-			{
-				if(r.isLocationInRegion(b.getLocation()))
+				for (Block b : event.blockList())
 				{
-					event.setCancelled(true);
+					if(r.isLocationInRegion(b.getLocation()))
+					{
+						event.setCancelled(true);
+					}
 				}
 			}
-		}
 		}
 	}
 
@@ -325,15 +325,15 @@ public class RegionEventHandler implements Listener {
 		{
 			if(!r.getFlags().contains(Flag.bucket))
 			{
-			if(r.isLocationInRegion(event.getBlockClicked().getLocation()))
-			{
-				if(!(event.getPlayer().hasPermission("rp.build") || event.getPlayer().isOp())) 
+				if(r.isLocationInRegion(event.getBlockClicked().getLocation()))
 				{
-				event.setCancelled(true);
-				event.getPlayer().sendMessage(ChatColor.DARK_RED + plugin.getConfig().getString("message"));
+					if(!(event.getPlayer().hasPermission("rp.build") || event.getPlayer().isOp())) 
+					{
+					event.setCancelled(true);
+					event.getPlayer().sendMessage(ChatColor.DARK_RED + plugin.getConfig().getString("message"));
+					}
 				}
 			}
-		}
 		}
 	}
 	
@@ -344,15 +344,15 @@ public class RegionEventHandler implements Listener {
 		{
 			if(!r.getFlags().contains(Flag.bucket))
 			{
-			if(r.isLocationInRegion(event.getBlockClicked().getLocation()))
-			{
-				if(!(event.getPlayer().hasPermission("rp.build") || event.getPlayer().isOp())) 
+				if(r.isLocationInRegion(event.getBlockClicked().getLocation()))
 				{
-					event.setCancelled(true);
-					event.getPlayer().sendMessage(ChatColor.DARK_RED + plugin.getConfig().getString("message"));
+					if(!(event.getPlayer().hasPermission("rp.build") || event.getPlayer().isOp())) 
+					{
+						event.setCancelled(true);
+						event.getPlayer().sendMessage(ChatColor.DARK_RED + plugin.getConfig().getString("message"));
+					}
 				}
 			}
-		}
 		}
 	}
 	
@@ -363,11 +363,11 @@ public class RegionEventHandler implements Listener {
 		{
 			if(!r.getFlags().contains(Flag.build))
 			{
-			if(r.isLocationInRegion(event.getVehicle().getLocation()))
-			{
-				event.setCancelled(true);
+				if(r.isLocationInRegion(event.getVehicle().getLocation()))
+				{
+					event.setCancelled(true);
+				}
 			}
-		}
 		}
 	}
 		
@@ -378,22 +378,22 @@ public class RegionEventHandler implements Listener {
 		{
 			if(!r.getFlags().contains(Flag.build))
 			{
-			if(r.isLocationInRegion(event.getEntity().getLocation()))
-			{
-				if(event.getRemover().getType().equals(EntityType.PLAYER))
+				if(r.isLocationInRegion(event.getEntity().getLocation()))
 				{
-					if(!(((Player)event.getRemover()).hasPermission("rp.build") || ((Player)event.getRemover()).isOp()))
+					if(event.getRemover().getType().equals(EntityType.PLAYER))
+					{
+						if(!(((Player)event.getRemover()).hasPermission("rp.build") || ((Player)event.getRemover()).isOp()))
+						{
+							event.setCancelled(true);
+							((Player)event.getRemover()).sendMessage(ChatColor.DARK_RED + plugin.getConfig().getString("message"));
+						}
+					}
+					else
 					{
 						event.setCancelled(true);
-						((Player)event.getRemover()).sendMessage(ChatColor.DARK_RED + plugin.getConfig().getString("message"));
 					}
 				}
-				else
-				{
-					event.setCancelled(true);
-				}
 			}
-		}
 		}
 	}
 	
@@ -404,15 +404,15 @@ public class RegionEventHandler implements Listener {
 		{
 			if(!r.getFlags().contains(Flag.build))
 			{
-			if(r.isLocationInRegion(event.getEntity().getLocation()))
-			{
-				if(!(event.getPlayer().hasPermission("rp.build") || event.getPlayer().isOp())) 
+				if(r.isLocationInRegion(event.getEntity().getLocation()))
 				{
-				event.setCancelled(true);
-				event.getPlayer().sendMessage(ChatColor.DARK_RED + plugin.getConfig().getString("message"));
+					if(!(event.getPlayer().hasPermission("rp.build") || event.getPlayer().isOp())) 
+					{
+					event.setCancelled(true);
+					event.getPlayer().sendMessage(ChatColor.DARK_RED + plugin.getConfig().getString("message"));
+					}
 				}
 			}
-		}
 		}
 	}
 	
@@ -423,15 +423,15 @@ public class RegionEventHandler implements Listener {
 		{
 			if(!r.getFlags().contains(Flag.build))
 			{
-			if(r.isLocationInRegion(event.getRightClicked().getLocation()))
-			{
-				if(!(event.getPlayer().hasPermission("rp.build") || event.getPlayer().isOp())) 
+				if(r.isLocationInRegion(event.getRightClicked().getLocation()))
 				{
-				event.setCancelled(true);
-				event.getPlayer().sendMessage(ChatColor.DARK_RED + plugin.getConfig().getString("message"));
+					if(!(event.getPlayer().hasPermission("rp.build") || event.getPlayer().isOp())) 
+					{
+					event.setCancelled(true);
+					event.getPlayer().sendMessage(ChatColor.DARK_RED + plugin.getConfig().getString("message"));
+					}
 				}
 			}
-		}
 		}
 	}
 	
@@ -442,14 +442,14 @@ public class RegionEventHandler implements Listener {
 		{
 			if(!r.getFlags().contains(Flag.commands))
 			{
-			if(r.isLocationInRegion(event.getPlayer().getLocation()))
-			{
-				if(!(event.getPlayer().hasPermission("rp.build") || event.getPlayer().isOp())) 
+				if(r.isLocationInRegion(event.getPlayer().getLocation()))
 				{
-					event.setCancelled(true);
-					event.getPlayer().sendMessage(ChatColor.DARK_RED + plugin.getConfig().getString("message"));
+					if(!(event.getPlayer().hasPermission("rp.build") || event.getPlayer().isOp())) 
+					{
+						event.setCancelled(true);
+						event.getPlayer().sendMessage(ChatColor.DARK_RED + plugin.getConfig().getString("message"));
+					}
 				}
-			}
 			}
 		}
 	}
@@ -514,7 +514,7 @@ public class RegionEventHandler implements Listener {
 				{
 					if(event.getEntity().getType().equals(EntityType.PLAYER) && event.getCause().equals(DamageCause.ENTITY_ATTACK) && ((EntityDamageByEntityEvent) event).getDamager() instanceof Player)
 					{
-					event.setCancelled(true);
+						event.setCancelled(true);
 					}
 				}	
 			}
@@ -530,10 +530,10 @@ public class RegionEventHandler implements Listener {
 			{
 				if(!r.getFlags().contains(Flag.monsterspawning))
 				{
-				if(r.isLocationInRegion(event.getEntity().getLocation()))
-				{
-					event.setCancelled(true);
-				}
+					if(r.isLocationInRegion(event.getEntity().getLocation()))
+					{
+						event.setCancelled(true);
+					}
 				}
 			}
 		}
@@ -543,10 +543,10 @@ public class RegionEventHandler implements Listener {
 			{
 				if(!r.getFlags().contains(Flag.build))
 				{
-				if(r.isLocationInRegion(event.getEntity().getLocation()))
-				{
-					event.setCancelled(true);
-				}
+					if(r.isLocationInRegion(event.getEntity().getLocation()))
+					{
+						event.setCancelled(true);
+					}
 				}
 			}
 		}
@@ -559,17 +559,17 @@ public class RegionEventHandler implements Listener {
 		{
 			if(!r.getFlags().contains(Flag.enderpearl))
 			{
-			if(r.isLocationInRegion(event.getPlayer().getLocation()))
-			{
-				if(event.getCause() == TeleportCause.ENDER_PEARL)
+				if(r.isLocationInRegion(event.getPlayer().getLocation()))
 				{
-				if(!(event.getPlayer().hasPermission("rp.build") || event.getPlayer().isOp())) 
-				{
-					event.setCancelled(true);
-					event.getPlayer().sendMessage(ChatColor.DARK_RED + plugin.getConfig().getString("message"));
+					if(event.getCause() == TeleportCause.ENDER_PEARL)
+					{
+						if(!(event.getPlayer().hasPermission("rp.build") || event.getPlayer().isOp())) 
+						{
+							event.setCancelled(true);
+							event.getPlayer().sendMessage(ChatColor.DARK_RED + plugin.getConfig().getString("message"));
+						}
+					}
 				}
-				}
-			}
 			}
 		}
 	}
