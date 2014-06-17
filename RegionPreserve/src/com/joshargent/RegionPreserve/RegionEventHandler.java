@@ -11,8 +11,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
+import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
@@ -22,9 +22,9 @@ import com.joshargent.RegionPreserve.Flags.Flag;
 
 public class RegionEventHandler implements Listener {
 	
-	RegionPreserve plugin;
+	RegionPreservePlugin plugin;
 	
-	public RegionEventHandler(RegionPreserve plugin)
+	public RegionEventHandler(RegionPreservePlugin plugin)
 	{
 		this.plugin = plugin;
 	}

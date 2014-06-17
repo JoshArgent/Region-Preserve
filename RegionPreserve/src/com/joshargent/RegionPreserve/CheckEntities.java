@@ -11,9 +11,9 @@ import com.joshargent.RegionPreserve.Flags.Flag;
  
 public class CheckEntities extends BukkitRunnable {
  
-    private RegionPreserve plugin;
+    private RegionPreservePlugin plugin;
  
-    public CheckEntities(RegionPreserve plugin)
+    public CheckEntities(RegionPreservePlugin plugin)
     {
         this.plugin = plugin;
     }

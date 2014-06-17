@@ -7,13 +7,12 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import com.google.common.base.Joiner;
 
 public class RegionPreserveCommand {
 	
-	public static void onCommand(CommandSender sender, Command cmd, String label, String[] args, RegionPreserve plugin)
+	public static void onCommand(CommandSender sender, Command cmd, String label, String[] args, RegionPreservePlugin plugin)
 	{
 		if (sender instanceof Player) {
 		if(sender.hasPermission("rp.edit") || sender.isOp()) 

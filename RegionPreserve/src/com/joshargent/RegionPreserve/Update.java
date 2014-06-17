@@ -16,9 +16,9 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 public class Update {
 	
-	RegionPreserve plugin;
+	private RegionPreservePlugin plugin;
 	
-	Update(RegionPreserve plugin)
+	Update(RegionPreservePlugin plugin)
 	{
 		this.plugin = plugin;
 	}

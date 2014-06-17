@@ -6,7 +6,6 @@ import java.util.Map;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import com.joshargent.RegionPreserve.Flags.Flag;
 
@@ -15,7 +14,7 @@ public class RegionEdit {
 	
 	public static Map<Player, Region> marked = new HashMap<Player, Region>();
 	
-	public static void CreateRegion(Player p, String name, RegionPreserve plugin)
+	public static void CreateRegion(Player p, String name, RegionPreservePlugin plugin)
 	{
 		if(marked.containsKey(p))
 		{
@@ -45,7 +44,7 @@ public class RegionEdit {
 		}
 	}
 	
-	public static void DeleteRegion(Player p, String name, RegionPreserve plugin)
+	public static void DeleteRegion(Player p, String name, RegionPreservePlugin plugin)
 	{
 		boolean found = false;
 		if(plugin.regions.size() > 0)
