@@ -1,4 +1,4 @@
-package regionPreserve;
+package com.joshargent.RegionPreserve;
 
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
@@ -7,7 +7,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import regionPreserve.Flags.Flag;
+import com.joshargent.RegionPreserve.Flags.Flag;
+
  
 public class CheckEntities extends BukkitRunnable {
  

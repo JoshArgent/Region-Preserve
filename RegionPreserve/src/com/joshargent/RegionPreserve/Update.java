@@ -1,4 +1,4 @@
-package regionPreserve;
+package com.joshargent.RegionPreserve;
 
 import java.io.BufferedReader;
 import java.io.File;

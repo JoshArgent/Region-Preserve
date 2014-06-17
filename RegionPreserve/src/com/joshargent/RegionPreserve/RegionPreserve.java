@@ -1,4 +1,4 @@
-package regionPreserve;
+package com.joshargent.RegionPreserve;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -26,7 +26,8 @@ import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
-import regionPreserve.Flags.Flag;
+import com.joshargent.RegionPreserve.Flags.Flag;
+
 
 public class RegionPreserve extends JavaPlugin implements Listener {
 	

@@ -1,4 +1,4 @@
-package regionPreserve;
+package com.joshargent.RegionPreserve;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;

@@ -1,5 +1,5 @@
 name: RegionPreserve
-main: regionPreserve.RegionPreserve
+main: com.joshargent.RegionPreserve.RegionPreserve
 version: 1.4.2
 commands:
   rp:
