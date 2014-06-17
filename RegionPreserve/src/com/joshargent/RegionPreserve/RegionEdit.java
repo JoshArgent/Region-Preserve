@@ -22,12 +22,12 @@ public class RegionEdit {
 			{
 				Region r = marked.get(p);
 				marked.remove(p);
-				ActiveRegion ar = new ActiveRegion(name, r.pointOne, r.pointTwo);
+				ActiveRegion ar = new ActiveRegion(name, r.pointOne, r.pointTwo, true);
 				// add default flags
-				ar.flags.add(Flag.use);
-				ar.flags.add(Flag.commands);
-				ar.flags.add(Flag.animalspawning);
-				ar.flags.add(Flag.mobdespawn);
+				ar.addFlag(Flag.use);
+				ar.addFlag(Flag.commands);
+				ar.addFlag(Flag.animalspawning);
+				ar.addFlag(Flag.mobdespawn);
 				// save the region
 				plugin.regions.add(ar);
 				RegionLoading.SaveRegions(plugin.regions);
@@ -51,7 +51,7 @@ public class RegionEdit {
 		{
 			for (ActiveRegion r : plugin.regions)
 			{
-				if(r.name.equalsIgnoreCase(name))
+				if(r.getName().equalsIgnoreCase(name))
 				{
 					RegionLoading.RemoveRegion(r);
 					plugin.regions = RegionLoading.LoadRegions();

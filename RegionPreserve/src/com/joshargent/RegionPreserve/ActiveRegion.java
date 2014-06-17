@@ -8,6 +8,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+import com.joshargent.RegionPreserve.Flags.Flag;
+
 interface RegionListener {
 	public void PlayerEnterEvent(ActiveRegion sender, Player player);
 	public void PlayerLeaveEvent(ActiveRegion sender, Player player);
@@ -15,18 +17,70 @@ interface RegionListener {
 
 public class ActiveRegion extends Region {
 
-	List<RegionListener> listeners = new ArrayList<RegionListener>();
-	List<String> PlayersInRegion = new ArrayList<String>();
+	private List<RegionListener> listeners = new ArrayList<RegionListener>();
+	private List<String> PlayersInRegion = new ArrayList<String>();
+	private String name;
+	private List<Flag> flags = new ArrayList<Flags.Flag>();
+	private String enterMessage;
+	private String leaveMessage;
+	private boolean save;
 	
-	ActiveRegion(String regionName, Location p1, Location p2) {
+	public ActiveRegion(String regionName, Location p1, Location p2, boolean save)
+	{
 		super(p1, p2);
 		name = regionName;
+		this.save = save;
 	}
 	
-	public String name;
-	public List<Flags.Flag> flags = new ArrayList<Flags.Flag>();
-	public String enterMessage;
-	public String leaveMessage;
+	public String getName()
+	{
+		return name;
+	}
+	
+	public boolean getSave()
+	{
+		return save;
+	}
+	
+	public List<Flag> getFlags()
+	{
+		return flags;
+	}
+	
+	public String getEnterMessage()
+	{
+		return enterMessage;
+	}
+	
+	public String getLeaveMessage()
+	{
+		return leaveMessage;
+	}
+	
+	public void setEnterMessage(String message)
+	{
+		enterMessage = message;
+	}
+	
+	public void setLeaveMessage(String message)
+	{
+		leaveMessage = message;
+	}
+	
+	public void setFlags(List<Flag> flags)
+	{
+		this.flags = flags;
+	}
+	
+	public void addFlag(Flag flag)
+	{
+		flags.add(flag);
+	}
+	
+	public void removeFlag(Flag flag)
+	{
+		flags.remove(flag);
+	}
 	
 	public boolean isLocationInRegion(Location l)
 	{
@@ -88,7 +142,8 @@ public class ActiveRegion extends Region {
 		}
 	}
 	
-	public void addListener(RegionListener toAdd) {
+	public void addListener(RegionListener toAdd)
+	{
         listeners.add(toAdd);
     }
 	

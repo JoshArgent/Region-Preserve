@@ -29,6 +29,11 @@ public class RegionPreservePlugin extends JavaPlugin implements Listener {
 	{
 		task.cancel();
 	}
+	
+	public RegionPreserveAPI getAPI(JavaPlugin plugin)
+	{
+		return new RegionPreserveAPI(plugin, this);
+	}
 
 	private void loadConfiguration()
 	{		 

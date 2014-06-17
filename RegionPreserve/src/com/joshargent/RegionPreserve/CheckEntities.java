@@ -28,7 +28,7 @@ public class CheckEntities extends BukkitRunnable {
 				{
 					for (ActiveRegion r : plugin.regions)
 					{
-						if(!r.flags.contains(Flag.mobdespawn))
+						if(!r.getFlags().contains(Flag.mobdespawn))
 						{
 							if(r.isLocationInRegion(e.getLocation()))
 							{

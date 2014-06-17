@@ -134,7 +134,7 @@ public class RegionPreserveCommand {
 						String flag = args[3];
 						for (ActiveRegion r : plugin.regions)
 						{
-							if(r.name.equalsIgnoreCase(regionName))
+							if(r.getName().equalsIgnoreCase(regionName))
 							{
 								region = r;
 							}
@@ -148,11 +148,11 @@ public class RegionPreserveCommand {
 						{
 							try
 							{
-								region.flags.add(Flags.flagFromString(flag));
+								region.addFlag(Flags.flagFromString(flag));
 								List<ActiveRegion> regions = new ArrayList<ActiveRegion>();
 								for(ActiveRegion r : plugin.regions)
 								{
-									if(r.name.equals(region.name))
+									if(r.getName().equals(region.getName()))
 									{
 										regions.add(region);
 									}
@@ -166,7 +166,7 @@ public class RegionPreserveCommand {
 								RegionLoading.SaveRegions(regions);
 								RegionLoading.LoadRegions();
 								}
-								catch(Exception ex) // DEBUG
+								catch(Exception ex)
 								{
 									System.out.print(ex.getMessage());
 								}
@@ -182,11 +182,11 @@ public class RegionPreserveCommand {
 						{
 							try
 							{
-								region.flags.remove(Flags.flagFromString(flag));
+								region.removeFlag(Flags.flagFromString(flag));
 								List<ActiveRegion> regions = new ArrayList<ActiveRegion>();
 								for(ActiveRegion r : plugin.regions)
 								{
-									if(r.name.equals(region.name))
+									if(r.getName().equals(region.getName()))
 									{
 										regions.add(region);
 									}
@@ -226,10 +226,10 @@ public class RegionPreserveCommand {
 					{
 						if(r.isLocationInRegion(((Player) sender).getLocation()))
 						{
-							sender.sendMessage(ChatColor.GREEN + "You are currently in the region '" + r.name + "'.");
-							sender.sendMessage(ChatColor.GREEN + "Region flags: '" + Joiner.on(", ").join(r.flags) + "'.");
-							sender.sendMessage(ChatColor.GREEN + "Enter message: '" + r.enterMessage + "'.");
-							sender.sendMessage(ChatColor.GREEN + "Leave message: '" + r.leaveMessage + "'.");
+							sender.sendMessage(ChatColor.GREEN + "You are currently in the region '" + r.getName() + "'.");
+							sender.sendMessage(ChatColor.GREEN + "Region flags: '" + Joiner.on(", ").join(r.getFlags()) + "'.");
+							sender.sendMessage(ChatColor.GREEN + "Enter message: '" + r.getEnterMessage() + "'.");
+							sender.sendMessage(ChatColor.GREEN + "Leave message: '" + r.getLeaveMessage() + "'.");
 							inRegion = true;
 						}
 					}

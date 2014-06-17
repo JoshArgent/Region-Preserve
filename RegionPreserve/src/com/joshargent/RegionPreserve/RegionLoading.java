@@ -27,11 +27,11 @@ public class RegionLoading {
 				Location pos1 = regionsData.getVector(key + ".pos1").toLocation(Bukkit.getWorld(regionsData.getString(key + ".world")));
 				Location pos2 = regionsData.getVector(key + ".pos2").toLocation(Bukkit.getWorld(regionsData.getString(key + ".world")));
 				String name = key;
-				ActiveRegion ar = new ActiveRegion(name, pos1, pos2);
+				ActiveRegion ar = new ActiveRegion(name, pos1, pos2, true);
 				List<Flags.Flag> flags = Flags.stringListToFlagList(regionsData.getStringList(key + ".flags"));
-				ar.flags = flags;
-				ar.enterMessage = regionsData.getString(key + ".enter");
-				ar.leaveMessage = regionsData.getString(key + ".leave");
+				ar.setFlags(flags);
+				ar.setEnterMessage(regionsData.getString(key + ".enter"));
+				ar.setLeaveMessage(regionsData.getString(key + ".leave"));
 				ar.addListener(new EnterLeaveMessages());
 				regions.add(ar);
 			}
@@ -49,7 +49,7 @@ public class RegionLoading {
 		FileConfiguration regionsData = null;
 		File regionsFile = new File("plugins/RegionPreserve", "regions.yml");
 		regionsData = YamlConfiguration.loadConfiguration(regionsFile);
-		regionsData.set(region.name, null);
+		regionsData.set(region.getName(), null);
 		try {
 			regionsData.save(regionsFile);
 		} catch (IOException e) {
@@ -65,12 +65,15 @@ public class RegionLoading {
 		regionsData = YamlConfiguration.loadConfiguration(regionsFile);
 		for (ActiveRegion r : regions)
 		{
-			regionsData.set(r.name + ".pos1", r.pointOne.toVector());
-			regionsData.set(r.name + ".pos2", r.pointTwo.toVector());
-			regionsData.set(r.name + ".world", r.pointOne.getWorld().getName());
-			regionsData.set(r.name + ".flags", Flags.flagsListToStringList(r.flags));
-			regionsData.set(r.name + ".enter", r.enterMessage);
-			regionsData.set(r.name + ".leave", r.leaveMessage);
+			if(r.getSave())
+			{
+				regionsData.set(r.getName() + ".pos1", r.pointOne.toVector());
+				regionsData.set(r.getName() + ".pos2", r.pointTwo.toVector());
+				regionsData.set(r.getName() + ".world", r.pointOne.getWorld().getName());
+				regionsData.set(r.getName() + ".flags", Flags.flagsListToStringList(r.getFlags()));
+				regionsData.set(r.getName() + ".enter", r.getEnterMessage());
+				regionsData.set(r.getName() + ".leave", r.getLeaveMessage());
+			}
 		}
 		try {
 			regionsData.save(regionsFile);

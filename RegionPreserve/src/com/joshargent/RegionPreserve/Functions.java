@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Random;
 
 import org.bukkit.ChatColor;
 
@@ -50,6 +51,17 @@ public class Functions {
 			}
 		}
 		return false;
+	}
+	
+	public static String randomString(final int length)
+	{
+	    Random r = new Random();
+	    StringBuilder sb = new StringBuilder();
+	    for(int i = 0; i < length; i++) {
+	        char c = (char)(r.nextInt((int)(Character.MAX_VALUE)));
+	        sb.append(c);
+	    }
+	    return sb.toString();
 	}
 	
 }

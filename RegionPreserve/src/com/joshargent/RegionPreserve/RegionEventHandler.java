@@ -54,7 +54,7 @@ public class RegionEventHandler implements Listener {
 			{
 				for (ActiveRegion r : plugin.regions)
 				{
-					if(!r.flags.contains(Flag.use))
+					if(!r.getFlags().contains(Flag.use))
 					{
 					if(r.isLocationInRegion(event.getClickedBlock().getLocation()))
 					{
@@ -76,7 +76,7 @@ public class RegionEventHandler implements Listener {
 			{
 				for (ActiveRegion r : plugin.regions)
 				{
-					if(!r.flags.contains(Flag.build))
+					if(!r.getFlags().contains(Flag.build))
 					{
 					if(r.isLocationInRegion(event.getClickedBlock().getLocation()))
 					{
@@ -97,7 +97,7 @@ public class RegionEventHandler implements Listener {
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
-			if(!r.flags.contains(Flag.build))
+			if(!r.getFlags().contains(Flag.build))
 			{
 			if(r.isLocationInRegion(event.getBlock().getLocation()))
 			{
@@ -116,7 +116,7 @@ public class RegionEventHandler implements Listener {
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
-			if(!r.flags.contains(Flag.burn))
+			if(!r.getFlags().contains(Flag.burn))
 			{
 			if(r.isLocationInRegion(event.getBlock().getLocation()))
 			{
@@ -131,7 +131,7 @@ public class RegionEventHandler implements Listener {
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
-			if(!r.flags.contains(Flag.fade))
+			if(!r.getFlags().contains(Flag.fade))
 			{
 			if(r.isLocationInRegion(event.getBlock().getLocation()))
 			{
@@ -146,7 +146,7 @@ public class RegionEventHandler implements Listener {
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
-			if(!r.flags.contains(Flag.grow))
+			if(!r.getFlags().contains(Flag.grow))
 			{
 			if(r.isLocationInRegion(event.getBlock().getLocation()))
 			{
@@ -162,7 +162,7 @@ public class RegionEventHandler implements Listener {
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
-			if(!r.flags.contains(Flag.grow))
+			if(!r.getFlags().contains(Flag.grow))
 			{
 			if(r.isLocationInRegion(event.getBlock().getLocation()))
 			{
@@ -184,7 +184,7 @@ public class RegionEventHandler implements Listener {
 		}
 		for (ActiveRegion r : plugin.regions)
 		{
-			if(!r.flags.contains(Flag.burn))
+			if(!r.getFlags().contains(Flag.burn))
 			{
 			if(r.isLocationInRegion(event.getBlock().getLocation()))
 			{
@@ -199,7 +199,7 @@ public class RegionEventHandler implements Listener {
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
-			if(!r.flags.contains(Flag.grow))
+			if(!r.getFlags().contains(Flag.grow))
 			{
 			if(r.isLocationInRegion(event.getBlock().getLocation()))
 			{
@@ -214,7 +214,7 @@ public class RegionEventHandler implements Listener {
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
-			if(!r.flags.contains(Flag.leafdecay))
+			if(!r.getFlags().contains(Flag.leafdecay))
 			{
 			if(r.isLocationInRegion(event.getBlock().getLocation()))
 			{
@@ -229,7 +229,7 @@ public class RegionEventHandler implements Listener {
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
-			if(!r.flags.contains(Flag.build))
+			if(!r.getFlags().contains(Flag.build))
 			{
 			if(r.isLocationInRegion(event.getBlock().getLocation()))
 			{
@@ -244,7 +244,7 @@ public class RegionEventHandler implements Listener {
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
-			if(!r.flags.contains(Flag.build))
+			if(!r.getFlags().contains(Flag.build))
 			{
 			if(r.isLocationInRegion(event.getBlock().getLocation()))
 			{
@@ -263,7 +263,7 @@ public class RegionEventHandler implements Listener {
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
-			if(!r.flags.contains(Flag.build))
+			if(!r.getFlags().contains(Flag.build))
 			{
 			if(r.isLocationInRegion(event.getBlock().getLocation()))
 			{
@@ -282,7 +282,7 @@ public class RegionEventHandler implements Listener {
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
-			if(!r.flags.contains(Flag.explode))
+			if(!r.getFlags().contains(Flag.explode))
 			{
 			for (Block b : event.blockList())
 			{
@@ -300,7 +300,7 @@ public class RegionEventHandler implements Listener {
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
-			if(!r.flags.contains(Flag.bucket))
+			if(!r.getFlags().contains(Flag.bucket))
 			{
 			if(r.isLocationInRegion(event.getBlockClicked().getLocation()))
 			{
@@ -319,7 +319,7 @@ public class RegionEventHandler implements Listener {
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
-			if(!r.flags.contains(Flag.bucket))
+			if(!r.getFlags().contains(Flag.bucket))
 			{
 			if(r.isLocationInRegion(event.getBlockClicked().getLocation()))
 			{
@@ -338,7 +338,7 @@ public class RegionEventHandler implements Listener {
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
-			if(!r.flags.contains(Flag.build))
+			if(!r.getFlags().contains(Flag.build))
 			{
 			if(r.isLocationInRegion(event.getVehicle().getLocation()))
 			{
@@ -353,7 +353,7 @@ public class RegionEventHandler implements Listener {
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
-			if(!r.flags.contains(Flag.build))
+			if(!r.getFlags().contains(Flag.build))
 			{
 			if(r.isLocationInRegion(event.getEntity().getLocation()))
 			{
@@ -379,7 +379,7 @@ public class RegionEventHandler implements Listener {
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
-			if(!r.flags.contains(Flag.build))
+			if(!r.getFlags().contains(Flag.build))
 			{
 			if(r.isLocationInRegion(event.getEntity().getLocation()))
 			{
@@ -398,7 +398,7 @@ public class RegionEventHandler implements Listener {
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
-			if(!r.flags.contains(Flag.build))
+			if(!r.getFlags().contains(Flag.build))
 			{
 			if(r.isLocationInRegion(event.getRightClicked().getLocation()))
 			{
@@ -417,7 +417,7 @@ public class RegionEventHandler implements Listener {
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
-			if(!r.flags.contains(Flag.commands))
+			if(!r.getFlags().contains(Flag.commands))
 			{
 			if(r.isLocationInRegion(event.getPlayer().getLocation()))
 			{
@@ -436,7 +436,7 @@ public class RegionEventHandler implements Listener {
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
-			if(!r.flags.contains(Flag.monsterspawning))
+			if(!r.getFlags().contains(Flag.monsterspawning))
 			{
 				if(event.getEntity() instanceof Monster)
 				{
@@ -446,7 +446,7 @@ public class RegionEventHandler implements Listener {
 					}
 				}
 			}
-			if(!r.flags.contains(Flag.animalspawning))
+			if(!r.getFlags().contains(Flag.animalspawning))
 			{
 				if(!(event.getEntity() instanceof Monster))
 				{
@@ -460,7 +460,7 @@ public class RegionEventHandler implements Listener {
 		
 		for (ActiveRegion r : plugin.regions)
 			{
-				if(!r.flags.contains(Flag.mobdespawn))
+				if(!r.getFlags().contains(Flag.mobdespawn))
 				{
 					if(r.isLocationInRegion(event.getEntity().getLocation()))
 					{
@@ -475,7 +475,7 @@ public class RegionEventHandler implements Listener {
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
-			if(!r.flags.contains(Flag.mobdespawn))
+			if(!r.getFlags().contains(Flag.mobdespawn))
 			{
 				if(r.isLocationInRegion(event.getEntity().getLocation()))
 				{
@@ -485,7 +485,7 @@ public class RegionEventHandler implements Listener {
 					}
 				}	
 			}
-			if(!r.flags.contains(Flag.pvp))
+			if(!r.getFlags().contains(Flag.pvp))
 			{
 				if(r.isLocationInRegion(event.getEntity().getLocation()))
 				{
@@ -505,7 +505,7 @@ public class RegionEventHandler implements Listener {
 		{
 		 for (ActiveRegion r : plugin.regions)
 			{
-				if(!r.flags.contains(Flag.monsterspawning))
+				if(!r.getFlags().contains(Flag.monsterspawning))
 				{
 				if(r.isLocationInRegion(event.getEntity().getLocation()))
 				{
@@ -518,7 +518,7 @@ public class RegionEventHandler implements Listener {
 		{
 		 for (ActiveRegion r : plugin.regions)
 			{
-				if(!r.flags.contains(Flag.build))
+				if(!r.getFlags().contains(Flag.build))
 				{
 				if(r.isLocationInRegion(event.getEntity().getLocation()))
 				{
@@ -534,7 +534,7 @@ public class RegionEventHandler implements Listener {
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
-			if(!r.flags.contains(Flag.enderpearl))
+			if(!r.getFlags().contains(Flag.enderpearl))
 			{
 			if(r.isLocationInRegion(event.getPlayer().getLocation()))
 			{
@@ -559,7 +559,7 @@ public class RegionEventHandler implements Listener {
 			Player p = (Player) event.getEntity();
 			for (ActiveRegion r : plugin.regions)
 			{
-				if(!r.flags.contains(Flag.pvp))
+				if(!r.getFlags().contains(Flag.pvp))
 				{
 					if(r.isLocationInRegion(p.getLocation()))
 					{

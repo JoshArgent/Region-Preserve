@@ -9,9 +9,9 @@ public class EnterLeaveMessages implements RegionListener {
 	{
 		for (ActiveRegion region : plugin.regions)
 		{
-			if(region.name.equalsIgnoreCase(regionName))
+			if(region.getName().equalsIgnoreCase(regionName))
 			{
-				region.enterMessage = message;
+				region.setEnterMessage(message);
 				RegionLoading.SaveRegions(plugin.regions);
 				sender.sendMessage(ChatColor.GREEN + "Region enter message set!");
 				return;
@@ -24,9 +24,9 @@ public class EnterLeaveMessages implements RegionListener {
 	{
 		for (ActiveRegion region : plugin.regions)
 		{
-			if(region.name.equalsIgnoreCase(regionName))
+			if(region.getName().equalsIgnoreCase(regionName))
 			{
-				region.leaveMessage = message;
+				region.setLeaveMessage(message);
 				RegionLoading.SaveRegions(plugin.regions);
 				sender.sendMessage(ChatColor.GREEN + "Region leave message set!");
 				return;
@@ -38,9 +38,9 @@ public class EnterLeaveMessages implements RegionListener {
 	@Override
 	public void PlayerEnterEvent(ActiveRegion sender, Player player) 
 	{
-		if(sender.enterMessage != null)
+		if(sender.getEnterMessage() != null)
 		{
-			String msg = Functions.convertColours(sender.enterMessage).replace("%player%", player.getName());
+			String msg = Functions.convertColours(sender.getEnterMessage()).replace("%player%", player.getName());
 			player.sendMessage(msg);
 		}
 	}
@@ -48,9 +48,9 @@ public class EnterLeaveMessages implements RegionListener {
 	@Override
 	public void PlayerLeaveEvent(ActiveRegion sender, Player player) 
 	{
-		if(sender.leaveMessage != null)
+		if(sender.getLeaveMessage() != null)
 		{
-			String msg = Functions.convertColours(sender.leaveMessage).replace("%player%", player.getName());
+			String msg = Functions.convertColours(sender.getLeaveMessage()).replace("%player%", player.getName());
 			player.sendMessage(msg);
 		}
 	}
