@@ -18,11 +18,11 @@ public class RegionEdit {
 	{
 		if(marked.containsKey(p))
 		{
-			if(marked.get(p).pointOne != null && marked.get(p).pointTwo != null)
+			if(marked.get(p).getPos1() != null && marked.get(p).getPos2() != null)
 			{
 				Region r = marked.get(p);
 				marked.remove(p);
-				ActiveRegion ar = new ActiveRegion(name, r.pointOne, r.pointTwo, true);
+				ActiveRegion ar = new ActiveRegion(name, r.getPos1(), r.getPos2(), true);
 				// add default flags
 				ar.addFlag(Flag.use);
 				ar.addFlag(Flag.commands);
@@ -82,7 +82,7 @@ public class RegionEdit {
 			else
 			{
 				Region r = marked.get(p);
-				r.pointOne = l;
+				r.setPos1(l);
 				marked.remove(p);
 				marked.put(p, r);
 			}
@@ -103,7 +103,7 @@ public class RegionEdit {
 			else
 			{
 				Region r = marked.get(p);
-				r.pointTwo = l;
+				r.setPos2(l);
 				marked.remove(p);
 				marked.put(p, r);
 			}
@@ -123,8 +123,12 @@ public class RegionEdit {
 			else
 			{
 				Region r = marked.get(p);
-				r.pointOne.setY(0);
-				r.pointTwo.setY(255);
+				Location p1 = r.getPos1();
+				p1.setY(0);
+				r.setPos1(p1);
+				Location p2 = r.getPos2();
+				p2.setY(255);
+				r.setPos2(p2);
 				marked.remove(p);
 				marked.put(p, r);
 			}

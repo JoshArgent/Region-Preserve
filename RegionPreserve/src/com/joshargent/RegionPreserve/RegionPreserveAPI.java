@@ -14,7 +14,6 @@ public class RegionPreserveAPI {
 		this.regionPreservePlugin = regionPreservePlugin;
 	}
 	
-	
 	/**
 	 * Will protect an area specified by a min and max corner point
 	 * 

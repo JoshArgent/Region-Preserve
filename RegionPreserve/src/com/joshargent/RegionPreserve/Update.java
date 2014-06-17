@@ -59,9 +59,9 @@ public class Update {
 			regions = YamlConfiguration.loadConfiguration(regionsFile);
 			for (ActiveRegion r : oldregions)
 			{
-				regions.set(r.getName() + ".pos1", r.pointOne.toVector());
-				regions.set(r.getName() + ".pos2", r.pointTwo.toVector());
-				regions.set(r.getName() + ".world", r.pointOne.getWorld().getName());
+				regions.set(r.getName() + ".pos1", r.getPos1().toVector());
+				regions.set(r.getName() + ".pos2", r.getPos2().toVector());
+				regions.set(r.getName() + ".world", r.getPos1().getWorld().getName());
 				regions.set(r.getName() + ".flags", Flags.flagsListToStringList(r.getFlags()));
 				regions.set(r.getName() + ".enter", "");
 				regions.set(r.getName() + ".leave", "");

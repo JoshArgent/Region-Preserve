@@ -67,9 +67,9 @@ public class RegionLoading {
 		{
 			if(r.getSave())
 			{
-				regionsData.set(r.getName() + ".pos1", r.pointOne.toVector());
-				regionsData.set(r.getName() + ".pos2", r.pointTwo.toVector());
-				regionsData.set(r.getName() + ".world", r.pointOne.getWorld().getName());
+				regionsData.set(r.getName() + ".pos1", r.getPos1().toVector());
+				regionsData.set(r.getName() + ".pos2", r.getPos2().toVector());
+				regionsData.set(r.getName() + ".world", r.getPos1().getWorld().getName());
 				regionsData.set(r.getName() + ".flags", Flags.flagsListToStringList(r.getFlags()));
 				regionsData.set(r.getName() + ".enter", r.getEnterMessage());
 				regionsData.set(r.getName() + ".leave", r.getLeaveMessage());

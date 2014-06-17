@@ -10,13 +10,36 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockBurnEvent;
+import org.bukkit.event.block.BlockFadeEvent;
+import org.bukkit.event.block.BlockFormEvent;
+import org.bukkit.event.block.BlockGrowEvent;
+import org.bukkit.event.block.BlockIgniteEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
+import org.bukkit.event.block.BlockSpreadEvent;
+import org.bukkit.event.block.EntityBlockFormEvent;
+import org.bukkit.event.block.LeavesDecayEvent;
+import org.bukkit.event.block.SignChangeEvent;
+import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
+import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.EntityShootBowEvent;
+import org.bukkit.event.entity.EntityTeleportEvent;
+import org.bukkit.event.hanging.HangingBreakByEntityEvent;
+import org.bukkit.event.hanging.HangingPlaceEvent;
+import org.bukkit.event.player.PlayerBucketEmptyEvent;
+import org.bukkit.event.player.PlayerBucketFillEvent;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
+import org.bukkit.event.vehicle.VehicleDestroyEvent;
 
 import com.joshargent.RegionPreserve.Flags.Flag;
 
@@ -30,7 +53,7 @@ public class RegionEventHandler implements Listener {
 	}
 	
 	@EventHandler
-	public void PlayerInteract(org.bukkit.event.player.PlayerInteractEvent event)
+	public void PlayerInteract(PlayerInteractEvent event)
 	{
 		// Check if the wand tool is used
 		if (event.getAction().equals(Action.RIGHT_CLICK_BLOCK) && event.getPlayer().getItemInHand().getType() == Material.STICK)
@@ -93,7 +116,7 @@ public class RegionEventHandler implements Listener {
 	}
 	
 	@EventHandler
-	public void BlockBreak(org.bukkit.event.block.BlockBreakEvent event)
+	public void BlockBreak(BlockBreakEvent event)
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
@@ -112,7 +135,7 @@ public class RegionEventHandler implements Listener {
 	}
 	
 	@EventHandler
-	public void BlockBurn(org.bukkit.event.block.BlockBurnEvent event)
+	public void BlockBurn(BlockBurnEvent event)
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
@@ -127,7 +150,7 @@ public class RegionEventHandler implements Listener {
 	}
 
 	@EventHandler
-	public void BlockFade(org.bukkit.event.block.BlockFadeEvent event)
+	public void BlockFade(BlockFadeEvent event)
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
@@ -142,7 +165,23 @@ public class RegionEventHandler implements Listener {
 	}
 	
 	@EventHandler
-	public void BlockForm(org.bukkit.event.block.BlockFormEvent event)
+	public void BlockForm(BlockFormEvent event)
+	{
+		for (ActiveRegion r : plugin.regions)
+		{
+			if(!r.getFlags().contains(Flag.grow))
+			{
+				if(r.isLocationInRegion(event.getBlock().getLocation()))
+				{
+					event.setCancelled(true);
+				}
+			}
+		}
+	}
+	
+	
+	@EventHandler
+	public void BlockGrow(BlockGrowEvent event)
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
@@ -156,24 +195,8 @@ public class RegionEventHandler implements Listener {
 		}
 	}
 	
-	
 	@EventHandler
-	public void BlockGrow(org.bukkit.event.block.BlockGrowEvent event)
-	{
-		for (ActiveRegion r : plugin.regions)
-		{
-			if(!r.getFlags().contains(Flag.grow))
-			{
-			if(r.isLocationInRegion(event.getBlock().getLocation()))
-			{
-				event.setCancelled(true);
-			}
-		}
-		}
-	}
-	
-	@EventHandler
-	public void BlockIgnite(org.bukkit.event.block.BlockIgniteEvent event)
+	public void BlockIgnite(BlockIgniteEvent event)
 	{
 		if(event.getPlayer() != null)
 		{
@@ -195,7 +218,7 @@ public class RegionEventHandler implements Listener {
 	}
 
 	@EventHandler
-	public void BlockSpread(org.bukkit.event.block.BlockSpreadEvent event)
+	public void BlockSpread(BlockSpreadEvent event)
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
@@ -210,7 +233,7 @@ public class RegionEventHandler implements Listener {
 	}
 		
 	@EventHandler
-	public void LeafDecay(org.bukkit.event.block.LeavesDecayEvent event)
+	public void LeafDecay(LeavesDecayEvent event)
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
@@ -225,7 +248,7 @@ public class RegionEventHandler implements Listener {
 	}
 	
 	@EventHandler
-	public void EntityBlockForm(org.bukkit.event.block.EntityBlockFormEvent event)
+	public void EntityBlockForm(EntityBlockFormEvent event)
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
@@ -240,7 +263,7 @@ public class RegionEventHandler implements Listener {
 	}
 	
 	@EventHandler
-	public void SignChange(org.bukkit.event.block.SignChangeEvent event)
+	public void SignChange(SignChangeEvent event)
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
@@ -259,7 +282,7 @@ public class RegionEventHandler implements Listener {
 	}
 
 	@EventHandler
-	public void BlockPlace(org.bukkit.event.block.BlockPlaceEvent event)
+	public void BlockPlace(BlockPlaceEvent event)
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
@@ -278,7 +301,7 @@ public class RegionEventHandler implements Listener {
 	}
 	
 	@EventHandler
-	public void EntityExplode(org.bukkit.event.entity.EntityExplodeEvent event)
+	public void EntityExplode(EntityExplodeEvent event)
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
@@ -296,7 +319,7 @@ public class RegionEventHandler implements Listener {
 	}
 
 	@EventHandler
-	public void BucketEmpty(org.bukkit.event.player.PlayerBucketEmptyEvent event)
+	public void BucketEmpty(PlayerBucketEmptyEvent event)
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
@@ -315,7 +338,7 @@ public class RegionEventHandler implements Listener {
 	}
 	
 	@EventHandler
-	public void BucketFill(org.bukkit.event.player.PlayerBucketFillEvent event)
+	public void BucketFill(PlayerBucketFillEvent event)
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
@@ -334,7 +357,7 @@ public class RegionEventHandler implements Listener {
 	}
 	
 	@EventHandler
-	public void VehicleDestory(org.bukkit.event.vehicle.VehicleDestroyEvent event)
+	public void VehicleDestory(VehicleDestroyEvent event)
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
@@ -349,7 +372,7 @@ public class RegionEventHandler implements Listener {
 	}
 		
 	@EventHandler
-	public void PaintingBreakByEntity(org.bukkit.event.hanging.HangingBreakByEntityEvent event)
+	public void PaintingBreakByEntity(HangingBreakByEntityEvent event)
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
@@ -375,7 +398,7 @@ public class RegionEventHandler implements Listener {
 	}
 	
 	@EventHandler
-	public void PaintingPlace(org.bukkit.event.hanging.HangingPlaceEvent event)
+	public void PaintingPlace(HangingPlaceEvent event)
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
@@ -394,7 +417,7 @@ public class RegionEventHandler implements Listener {
 	}
 	
 	@EventHandler
-	public void PaintingEdit(org.bukkit.event.player.PlayerInteractEntityEvent event)
+	public void PaintingEdit(PlayerInteractEntityEvent event)
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
@@ -413,7 +436,7 @@ public class RegionEventHandler implements Listener {
 	}
 	
 	@EventHandler
-	public void CommandEvent(org.bukkit.event.player.PlayerCommandPreprocessEvent event)
+	public void CommandEvent(PlayerCommandPreprocessEvent event)
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
@@ -432,7 +455,7 @@ public class RegionEventHandler implements Listener {
 	}
 	
 	@EventHandler
-	public void CreatureSpawn(org.bukkit.event.entity.CreatureSpawnEvent event)
+	public void CreatureSpawn(CreatureSpawnEvent event)
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
@@ -471,7 +494,7 @@ public class RegionEventHandler implements Listener {
 		}
 	
 	@EventHandler
-	public void MobDamage(org.bukkit.event.entity.EntityDamageEvent event)
+	public void MobDamage(EntityDamageEvent event)
 	{
 		for (ActiveRegion r : plugin.regions)
 		{
@@ -499,7 +522,7 @@ public class RegionEventHandler implements Listener {
 	}
 	
 	@EventHandler
-	public void EntityTeleport(org.bukkit.event.entity.EntityTeleportEvent event)
+	public void EntityTeleport(EntityTeleportEvent event)
 	{
 		if(event.getEntityType().equals(EntityType.ENDERMAN))
 		{
