@@ -15,7 +15,7 @@ public class RegionEdit {
 	
 	public static Map<Player, Region> marked = new HashMap<Player, Region>();
 	
-	public static void CreateRegion(Player p, String name, JavaPlugin plugin)
+	public static void CreateRegion(Player p, String name, RegionPreserve plugin)
 	{
 		if(marked.containsKey(p))
 		{
@@ -30,8 +30,8 @@ public class RegionEdit {
 				ar.flags.add(Flag.animalspawning);
 				ar.flags.add(Flag.mobdespawn);
 				// save the region
-				RegionPreserve.regions.add(ar);
-				RegionLoading.SaveRegions(RegionPreserve.regions);
+				plugin.regions.add(ar);
+				RegionLoading.SaveRegions(plugin.regions);
 				p.sendMessage(ChatColor.GREEN + "You have created the region '" + name + "'!");
 			}
 			else
@@ -45,17 +45,17 @@ public class RegionEdit {
 		}
 	}
 	
-	public static void DeleteRegion(Player p, String name)
+	public static void DeleteRegion(Player p, String name, RegionPreserve plugin)
 	{
 		boolean found = false;
-		if(RegionPreserve.regions.size() > 0)
+		if(plugin.regions.size() > 0)
 		{
-			for (ActiveRegion r : RegionPreserve.regions)
+			for (ActiveRegion r : plugin.regions)
 			{
 				if(r.name.equalsIgnoreCase(name))
 				{
 					RegionLoading.RemoveRegion(r);
-					RegionPreserve.regions = RegionLoading.LoadRegions();
+					plugin.regions = RegionLoading.LoadRegions();
 					found = true;
 				}
 			}

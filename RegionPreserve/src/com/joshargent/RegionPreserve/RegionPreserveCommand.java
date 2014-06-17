@@ -13,7 +13,7 @@ import com.google.common.base.Joiner;
 
 public class RegionPreserveCommand {
 	
-	public static void onCommand(CommandSender sender, Command cmd, String label, String[] args, JavaPlugin p)
+	public static void onCommand(CommandSender sender, Command cmd, String label, String[] args, RegionPreserve plugin)
 	{
 		if (sender instanceof Player) {
 		if(sender.hasPermission("rp.edit") || sender.isOp()) 
@@ -26,7 +26,7 @@ public class RegionPreserveCommand {
 					// /rp create <regionname> command
 					if(args.length == 2)
 					{
-						RegionEdit.CreateRegion((Player) sender, args[1], p);
+						RegionEdit.CreateRegion((Player) sender, args[1], plugin);
 					}
 					else
 					{
@@ -39,7 +39,7 @@ public class RegionPreserveCommand {
 					// /rp delete <regionname> command
 					if(args.length == 2)
 					{
-						RegionEdit.DeleteRegion((Player) sender, args[1]);
+						RegionEdit.DeleteRegion((Player) sender, args[1], plugin);
 					}
 					else
 					{
@@ -57,7 +57,7 @@ public class RegionPreserveCommand {
 							if(args.length < 4)
 							{
 								// Remove enter message
-								EnterLeaveMessages.setEnterMessage((Player) sender, args[1], "");
+								EnterLeaveMessages.setEnterMessage((Player) sender, args[1], "", plugin);
 							}
 							else
 							{
@@ -75,7 +75,7 @@ public class RegionPreserveCommand {
 								    num += 1;
 								}
 								String msg = builder.toString();
-								EnterLeaveMessages.setEnterMessage((Player) sender, args[1], msg);
+								EnterLeaveMessages.setEnterMessage((Player) sender, args[1], msg, plugin);
 							}
 						}
 						else if(args[2].equalsIgnoreCase("leave"))
@@ -83,7 +83,7 @@ public class RegionPreserveCommand {
 							if(args.length < 4)
 							{
 								// Remove leave message
-								EnterLeaveMessages.setLeaveMessage((Player) sender, args[1], "");
+								EnterLeaveMessages.setLeaveMessage((Player) sender, args[1], "", plugin);
 							}
 							else
 							{
@@ -101,7 +101,7 @@ public class RegionPreserveCommand {
 								    num += 1;
 								}
 								String msg = builder.toString();
-								EnterLeaveMessages.setLeaveMessage((Player) sender, args[1], msg);
+								EnterLeaveMessages.setLeaveMessage((Player) sender, args[1], msg, plugin);
 							}
 						}
 						else
@@ -133,7 +133,7 @@ public class RegionPreserveCommand {
 						String regionName = args[1];
 						ActiveRegion region = null;
 						String flag = args[3];
-						for (ActiveRegion r : RegionPreserve.regions)
+						for (ActiveRegion r : plugin.regions)
 						{
 							if(r.name.equalsIgnoreCase(regionName))
 							{
@@ -151,7 +151,7 @@ public class RegionPreserveCommand {
 							{
 								region.flags.add(Flags.flagFromString(flag));
 								List<ActiveRegion> regions = new ArrayList<ActiveRegion>();
-								for(ActiveRegion r : RegionPreserve.regions)
+								for(ActiveRegion r : plugin.regions)
 								{
 									if(r.name.equals(region.name))
 									{
@@ -185,7 +185,7 @@ public class RegionPreserveCommand {
 							{
 								region.flags.remove(Flags.flagFromString(flag));
 								List<ActiveRegion> regions = new ArrayList<ActiveRegion>();
-								for(ActiveRegion r : RegionPreserve.regions)
+								for(ActiveRegion r : plugin.regions)
 								{
 									if(r.name.equals(region.name))
 									{
@@ -215,15 +215,15 @@ public class RegionPreserveCommand {
 				}
 				else if(args[0].equalsIgnoreCase("reload"))
 				{
-					p.reloadConfig();
-					RegionPreserve.regions = RegionLoading.LoadRegions();
+					plugin.reloadConfig();
+					plugin.regions = RegionLoading.LoadRegions();
 					System.out.print("[RegionPreserve] RegionPreserve reloaded!");
 					sender.sendMessage(ChatColor.GREEN + "RegionPreserve has been reloaded!");
 				}
 				else if(args[0].equalsIgnoreCase("info"))
 				{
 					boolean inRegion = false;
-					for (ActiveRegion r : RegionPreserve.regions)
+					for (ActiveRegion r : plugin.regions)
 					{
 						if(r.isLocationInRegion(((Player) sender).getLocation()))
 						{

@@ -5,14 +5,14 @@ import org.bukkit.entity.Player;
 
 public class EnterLeaveMessages implements RegionListener {
 		
-	public static void setEnterMessage(Player sender, String regionName, String message)
+	public static void setEnterMessage(Player sender, String regionName, String message, RegionPreserve plugin)
 	{
-		for (ActiveRegion region : RegionPreserve.regions)
+		for (ActiveRegion region : plugin.regions)
 		{
 			if(region.name.equalsIgnoreCase(regionName))
 			{
 				region.enterMessage = message;
-				RegionLoading.SaveRegions(RegionPreserve.regions);
+				RegionLoading.SaveRegions(plugin.regions);
 				sender.sendMessage(ChatColor.GREEN + "Region enter message set!");
 				return;
 			}
@@ -20,14 +20,14 @@ public class EnterLeaveMessages implements RegionListener {
 		sender.sendMessage(ChatColor.RED + "That region does not exist!");
 	}
 
-	public static void setLeaveMessage(Player sender, String regionName, String message)
+	public static void setLeaveMessage(Player sender, String regionName, String message, RegionPreserve plugin)
 	{
-		for (ActiveRegion region : RegionPreserve.regions)
+		for (ActiveRegion region : plugin.regions)
 		{
 			if(region.name.equalsIgnoreCase(regionName))
 			{
 				region.leaveMessage = message;
-				RegionLoading.SaveRegions(RegionPreserve.regions);
+				RegionLoading.SaveRegions(plugin.regions);
 				sender.sendMessage(ChatColor.GREEN + "Region leave message set!");
 				return;
 			}
