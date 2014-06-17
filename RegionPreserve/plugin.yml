@@ -5,15 +5,11 @@ commands:
   rp:
     description: Region Protection main command
     usage: /<command>
+    permission: rp.edit
 permissions:
-    rp.*:
-        description: Gives access to all RegionPreserve commands and functions
-        children:
-            rp.build: true
-            rp.edit: true
     rp.edit:
         description: Allows you to create or delete RegionPreserve regions
         default: op
-    rp.build:
-        description: Allows you to build in RegionPreserve regions
+    rp.build.*:
+        description: Allows you to build in all RegionPreserve regions
         default: op
